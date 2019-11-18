@@ -5,6 +5,7 @@ import styled from "@emotion/styled"
 import { Heading1, Heading2 } from "../elements/Headers"
 import { useSpring, animated } from "react-spring"
 import { Container } from "../components/Containers"
+import Modal from "../components/Modal"
 const background = require("../images/planet.jpg")
 const expandSound = require("../sounds/expand.mp3")
 
@@ -41,6 +42,7 @@ function IndexPage({ location }: IndexPage) {
       <audio ref={audio} id="audio">
         <source src={expandSound} type="audio/mpeg" />
       </audio>
+      {/* <Modal /> */}
     </animated.div>
   )
 }
