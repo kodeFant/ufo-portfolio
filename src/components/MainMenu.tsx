@@ -66,7 +66,7 @@ export default function MainMenu() {
 }
 
 interface IButton {
-  gridArea: string
+  gridArea?: string
 }
 
 const defaultButton = css`
@@ -96,15 +96,15 @@ const defaultButton = css`
 `
 
 const Button = styled.button<IButton>`
-${defaultButton}
-  grid-area: ${({ gridArea }) => gridArea};
+  ${defaultButton}
+  ${({ gridArea }) => gridArea && `grid-area: ${gridArea}`};
   cursor: url(${cursor}) 0 0, auto;
 `
 
 export const ButtonLink = styled(Link)<IButton>`
   ${defaultButton}
   text-decoration: none;
-  grid-area: ${({ gridArea }) => gridArea};
+  ${({ gridArea }) => gridArea && `grid-area: ${gridArea}`};
 `
 
 const Selections = styled.div`

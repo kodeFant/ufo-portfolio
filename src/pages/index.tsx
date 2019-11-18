@@ -8,19 +8,22 @@ import { Container } from "../components/Containers"
 const background = require("../images/planet.jpg")
 const expandSound = require("../sounds/expand.mp3")
 
-function IndexPage({ location }) {
+interface IndexPage {
+  location: any
+}
+
+function IndexPage({ location }: IndexPage) {
   const grow = useSpring({
-    config: { duration: 700 },
+    config: { duration: 600 },
     to: { height: "100%", width: "100%" },
     from: { height: "10%", width: "10%" },
   })
   const audio = useRef<HTMLAudioElement>(null)
-  const [soundPlayed, setSoundPlayed] = useState(false)
+
   useEffect(() => {
-    if (audio.current && !soundPlayed && location.state.sound !== false) {
+    if (audio.current && location.state && location.state.muteSound !== true) {
       audio.current.volume = 0.1
       audio.current.play()
-      setSoundPlayed(true)
     }
   })
 

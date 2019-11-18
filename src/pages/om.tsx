@@ -7,7 +7,7 @@ const AboutPage = () => (
   <Layout>
     <Container>
       Om meg
-      <ButtonLink to="/" gridArea="" state={{ sound: false }}>
+      <ButtonLink to="/" state={{ muteSound: true }}>
         Tilbake
       </ButtonLink>
     </Container>

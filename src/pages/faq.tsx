@@ -8,7 +8,7 @@ export default function FAQPage() {
     <Layout>
       <Container>
         Ofte stilte spørsmål
-        <ButtonLink to="/" gridArea="" state={{ sound: false }}>
+        <ButtonLink to="/" state={{ muteSound: false }}>
           Tilbake
         </ButtonLink>
       </Container>

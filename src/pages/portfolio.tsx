@@ -8,7 +8,7 @@ export default function PortfolioPage() {
     <Layout>
       <Container>
         Portefølje
-        <ButtonLink to="/" gridArea="" state={{ sound: false }}>
+        <ButtonLink to="/" state={{ muteSound: true }}>
           Tilbake
         </ButtonLink>
       </Container>
