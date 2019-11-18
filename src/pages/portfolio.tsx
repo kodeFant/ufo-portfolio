@@ -1,9 +1,17 @@
 import React from "react"
 import Layout from "../components/Layout"
-import MainMenu from "../components/MainMenu"
-import styled from "@emotion/styled"
-import { Heading1, Heading2 } from "../elements/Headers"
+import { ButtonLink } from "../components/MainMenu"
+import { Container } from "../components/Containers"
 
-const PortfolioPage = () => <Layout>Om meg</Layout>
-
-export default PortfolioPage
+export default function PortfolioPage() {
+  return (
+    <Layout>
+      <Container>
+        Portefølje
+        <ButtonLink to="/" gridArea="" state={{ sound: false }}>
+          Tilbake
+        </ButtonLink>
+      </Container>
+    </Layout>
+  )
+}

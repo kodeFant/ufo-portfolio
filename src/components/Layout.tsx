@@ -51,6 +51,11 @@ export default function Layout({ children, backgroundImg }: ILayout) {
             background-color: black;
             cursor: url(${cursor}) 1 1, auto;
           }
+          #gatsby-focus-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
           body {
             font-family: "Fira Mono", monospace;
           }
@@ -75,4 +80,5 @@ const LayoutContainer = styled.div`
   border-image: url(${borderImg}) 20;
   color: white;
   text-align: center;
+  overflow: hidden;
 `

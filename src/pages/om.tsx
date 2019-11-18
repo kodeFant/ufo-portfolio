@@ -1,9 +1,17 @@
 import React from "react"
 import Layout from "../components/Layout"
-import MainMenu from "../components/MainMenu"
-import styled from "@emotion/styled"
-import { Heading1, Heading2 } from "../elements/Headers"
+import { ButtonLink } from "../components/MainMenu"
+import { Container } from "../components/Containers"
 
-const AboutPage = () => <Layout>Om meg</Layout>
+const AboutPage = () => (
+  <Layout>
+    <Container>
+      Om meg
+      <ButtonLink to="/" gridArea="" state={{ sound: false }}>
+        Tilbake
+      </ButtonLink>
+    </Container>
+  </Layout>
+)
 
 export default AboutPage

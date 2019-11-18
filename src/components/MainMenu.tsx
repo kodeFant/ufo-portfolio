@@ -101,7 +101,7 @@ ${defaultButton}
   cursor: url(${cursor}) 0 0, auto;
 `
 
-const ButtonLink = styled(Link)<IButton>`
+export const ButtonLink = styled(Link)<IButton>`
   ${defaultButton}
   text-decoration: none;
   grid-area: ${({ gridArea }) => gridArea};
