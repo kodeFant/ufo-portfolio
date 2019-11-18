@@ -105,6 +105,7 @@ export const ButtonLink = styled(Link)<IButton>`
   ${defaultButton}
   text-decoration: none;
   ${({ gridArea }) => gridArea && `grid-area: ${gridArea}`};
+  cursor: url(${cursor}) 0 0, auto;
 `
 
 const Selections = styled.div`
