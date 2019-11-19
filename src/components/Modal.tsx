@@ -82,6 +82,9 @@ function SocialMediaModal() {
                     text-align: center;
                   }
                 `}
+                onClick={e => {
+                  e.stopPropagation()
+                }}
               >
                 <Heading2>Sosiale medier</Heading2>
                 <div
@@ -132,7 +135,6 @@ function BackDropContainer({ children }: IBackdrop) {
   return (
     <Backdrop
       onClick={e => {
-        e.stopPropagation()
         closeModal()
       }}
     >
