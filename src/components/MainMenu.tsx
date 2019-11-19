@@ -4,10 +4,13 @@ const clickSound = require("../sounds/click.mp3")
 import { mq } from "../elements/MediaQueries"
 import { Link, navigate } from "gatsby"
 import { css } from "@emotion/core"
+import ModalState from "../state/modal"
+import { Modal } from "../types/Modal"
 
 const cursor = require("../images/cursor.png")
 
 export default function MainMenu() {
+  const { openModal } = ModalState.useContainer()
   const audio = useRef<HTMLAudioElement>(null)
   const playSound = () => {
     if (audio.current) {
@@ -51,10 +54,22 @@ export default function MainMenu() {
         >
           Spørsmål
         </Button>
-        <Button gridArea="four" onClick={playSound}>
+        <Button
+          gridArea="four"
+          onClick={() => {
+            openModal(Modal.SOCIAL_MEDIA)
+            playSound()
+          }}
+        >
           Sosiale medier
         </Button>
-        <Button gridArea="five" onClick={playSound}>
+        <Button
+          gridArea="five"
+          onClick={() => {
+            openModal(Modal.CONTACT_FORM)
+            playSound()
+          }}
+        >
           Kontakt
         </Button>
       </Selections>
@@ -95,7 +110,7 @@ const defaultButton = css`
   }
 `
 
-const Button = styled.button<IButton>`
+export const Button = styled.button<IButton>`
   ${defaultButton}
   ${({ gridArea }) => gridArea && `grid-area: ${gridArea}`};
   cursor: url(${cursor}) 0 0, auto;

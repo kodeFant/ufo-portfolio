@@ -1,0 +1,5 @@
+export enum Modal {
+  NO_MODAL = "NO_MODAL",
+  SOCIAL_MEDIA = "SOCIAL_MEDIA",
+  CONTACT_FORM = "CONTACT_FORM",
+}

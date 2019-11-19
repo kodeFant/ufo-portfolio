@@ -19,11 +19,14 @@
     "gatsby-plugin-typescript": "^2.1.18",
     "gatsby-source-filesystem": "^2.1.36",
     "gatsby-transformer-sharp": "^2.3.3",
+    "immer": "^5.0.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
     "react-spring": "^8.0.27",
-    "typeface-fira-mono": "^0.0.72"
+    "typeface-fira-mono": "^0.0.72",
+    "unstated-next": "^1.1.0",
+    "use-immer": "^0.3.5"
   },
   "devDependencies": {
     "prettier": "^1.19.1",
