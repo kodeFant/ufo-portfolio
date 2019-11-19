@@ -40,11 +40,11 @@ function IndexPage({ location }: IndexPage) {
           </Header>
           <MainMenu />
         </Container>
+        <Modal />
       </Layout>
       <audio ref={audio} id="audio">
         <source src={expandSound} type="audio/mpeg" />
       </audio>
-      <Modal />
     </animated.div>
   )
 }

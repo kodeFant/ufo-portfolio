@@ -2,6 +2,7 @@ import React from "react"
 import styled from "@emotion/styled"
 import { Global, css } from "@emotion/core"
 import emotionNormalize from "emotion-normalize"
+import Providers from "../state/Providers"
 const borderImg = require("../images/border.png")
 const cursor = require("../images/cursor.png")
 
@@ -12,7 +13,7 @@ interface ILayout {
 
 export default function Layout({ children, backgroundImg }: ILayout) {
   return (
-    <>
+    <Providers>
       <LayoutContainer>
         <img
           src={backgroundImg}
@@ -67,7 +68,7 @@ export default function Layout({ children, backgroundImg }: ILayout) {
           }
         `}
       />
-    </>
+    </Providers>
   )
 }
 
