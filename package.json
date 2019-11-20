@@ -25,6 +25,7 @@
     "react-helmet": "^5.2.1",
     "react-spring": "^8.0.27",
     "typeface-fira-mono": "^0.0.72",
+    "typeface-vt323": "^0.0.72",
     "unstated-next": "^1.1.0",
     "use-immer": "^0.3.5"
   },

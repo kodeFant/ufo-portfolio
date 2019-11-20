@@ -1,7 +1,8 @@
 import React from "react"
 import Layout from "../components/Layout"
-import { ButtonLink } from "../components/MainMenu"
+
 import { Container } from "../components/Containers"
+import { ButtonLink } from "../elements/Button"
 
 const AboutPage = () => (
   <Layout>

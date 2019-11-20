@@ -17,6 +17,7 @@ export default function Layout({ children, backgroundImg }: ILayout) {
       <LayoutContainer>
         <img
           src={backgroundImg}
+          alt=""
           css={css`
             & {
               position: absolute;
@@ -58,7 +59,8 @@ export default function Layout({ children, backgroundImg }: ILayout) {
             align-items: center;
           }
           body {
-            font-family: "Fira Mono", monospace;
+            font-family: "VT323", monospace;
+            font-size: 2rem;
           }
           * {
             box-sizing: border-box;
