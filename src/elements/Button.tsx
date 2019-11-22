@@ -2,30 +2,36 @@ import styled from "@emotion/styled"
 import { css } from "@emotion/core"
 import { mq } from "./MediaQuery"
 import { Link } from "gatsby"
+import {
+  darkestGreen,
+  darkerGreen,
+  lighterGreen,
+  lightestGreen,
+} from "../utilities/Colors"
 const cursor = require("../images/cursor.png")
 
 const defaultButton = css`
   & {
     display: block;
-    background-color: #1c8064;
+    background-color: ${darkerGreen};
     padding: 1rem;
-    color: #78ccbf;
+    color: ${lightestGreen};
     font-size: 1.5rem;
-    outline: 2px outset #64ccbc;
-    border: 2px outset #3ca490;
-    text-shadow: 2px 2px 0px #003420, -2px -2px 0px #003420,
-      -2px 2px 0px #003420, 2px -2px 0px #003420;
+    outline: outset 2px ${lighterGreen};
+    border: outset 2px ${lighterGreen};
+    text-shadow: 2px 2px 0px ${darkestGreen}, -2px -2px 0px ${darkestGreen},
+      -2px 2px 0px ${darkestGreen}, 2px -2px 0px ${darkestGreen};
 
     ${mq[0]} {
       padding: 1.5rem;
     }
 
     &:active {
-      outline: 2px inset #64ccbc;
-      border: 2px inset #3ca490;
-      color: #003420;
-      text-shadow: 2px 2px 0px #78ccbf, -2px -2px 0px #78ccbf,
-        -2px 2px 0px #78ccbf, 2px -2px 0px #78ccbf;
+      outline: 2px inset ${lighterGreen};
+      border: 2px inset ${lighterGreen};
+      color: ${darkestGreen};
+      text-shadow: 2px 2px 0px ${lightestGreen}, -2px -2px 0px ${lightestGreen},
+        -2px 2px 0px ${lightestGreen}, 2px -2px 0px ${lightestGreen};
     }
   }
 `

@@ -51,6 +51,10 @@ export default function Layout({ children, backgroundImg }: ILayout) {
           html, body, #___gatsby, #gatsby-focus-wrapper {
             height: 100%;
             background-color: black;
+          }
+          *,
+          html,
+          body {
             cursor: url(${cursor}) 1 1, auto;
           }
           #gatsby-focus-wrapper {

@@ -8,10 +8,10 @@ import { ModalContainer } from "../../elements/Modal"
 import { css } from "@emotion/core"
 import { Button } from "../../elements/Button"
 import styled from "@emotion/styled"
-const skyLineBackground = require("../../images/skyline-background.png")
+import { darkestGreen, mainGreen } from "../../utilities/Colors"
 
 export default function SocialMediaModal() {
-  const { modal, closeModal } = ModalState.useContainer()
+  const { closeModal } = ModalState.useContainer()
   const [open, setModalState] = useState(true)
   useEffect(() => {
     if (open === false) {
@@ -27,7 +27,6 @@ export default function SocialMediaModal() {
     leave: { height: "1px" },
     config: { duration: 200 },
   })
-  const socialMediaIcons = useStaticQuery(socialMediaIconsQuery)
 
   return (
     <Backdrop>
@@ -42,7 +41,7 @@ export default function SocialMediaModal() {
                 css={css`
                   & {
                     height: 100%;
-                    background-color: #072407;
+                    background-color: ${darkestGreen};
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
@@ -58,15 +57,14 @@ export default function SocialMediaModal() {
               >
                 <h2
                   css={css`
-                    & {
-                      color: #40b06d;
-                      text-shadow: 2px 2px 0px #003420, -2px -2px 0px #003420,
-                        -2px 2px 0px #003420, 2px -2px 0px #003420;
-                      text-transform: uppercase;
-                      font-size: 3rem;
-                      font-weight: 500;
-                      margin: 0;
-                    }
+                    color: ${mainGreen};
+                    text-shadow: 2px 2px 0px ${darkestGreen},
+                      -2px -2px 0px ${darkestGreen},
+                      -2px 2px 0px ${darkestGreen}, 2px -2px 0px ${darkestGreen};
+                    text-transform: uppercase;
+                    font-size: 3rem;
+                    font-weight: 500;
+                    margin: 0;
                   `}
                 >
                   Sosiale medier
@@ -90,12 +88,6 @@ export default function SocialMediaModal() {
                     Github
                   </SocialMediaLink>
                 </div>
-                {/* <Img
-                    fixed={socialMediaIcons.linkedin.childImageSharp.fixed}
-                  />
-
-                  <Img fixed={socialMediaIcons.twitter.childImageSharp.fixed} />
-                  <Img fixed={socialMediaIcons.github.childImageSharp.fixed} /> */}
 
                 <Button
                   onClick={() => {
@@ -121,40 +113,14 @@ export default function SocialMediaModal() {
 const SocialMediaLink = styled.a`
   display: block;
   text-decoration: none;
-  color: #40b06c;
+  color: ${mainGreen};
   font-size: 1.8rem;
   text-transform: uppercase;
-  text-shadow: 2px 2px 0px #003420, -2px -2px 0px #003420, -2px 2px 0px #003420,
-    2px -2px 0px #003420;
+  text-shadow: 2px 2px 0px ${darkestGreen}, -2px -2px 0px ${darkestGreen},
+    -2px 2px 0px ${darkestGreen}, 2px -2px 0px ${darkestGreen};
   cursor: inherit;
   padding: 0 1rem;
   :hover {
     background-color: rgba(255, 255, 255, 0.2);
-  }
-`
-
-const socialMediaIconsQuery = graphql`
-  query {
-    linkedin: file(relativePath: { eq: "linkedin64.png" }) {
-      childImageSharp {
-        fixed(width: 64) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    twitter: file(relativePath: { eq: "twitter64.png" }) {
-      childImageSharp {
-        fixed(width: 64) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    github: file(relativePath: { eq: "github64.png" }) {
-      childImageSharp {
-        fixed(width: 64) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
   }
 `
