@@ -3,33 +3,35 @@ import styled from "@emotion/styled"
 import { Global, css } from "@emotion/core"
 import emotionNormalize from "emotion-normalize"
 import Providers from "../state/Providers"
+import Img, { FluidObject } from "gatsby-image"
 const borderImg = require("../images/border.png")
 const cursor = require("../images/cursor.png")
 
 interface ILayout {
   children: React.ReactNode
-  backgroundImg?: string
+  backgroundImg?: FluidObject | FluidObject[]
 }
 
 export default function Layout({ children, backgroundImg }: ILayout) {
   return (
     <Providers>
       <LayoutContainer>
-        <img
-          src={backgroundImg}
-          alt=""
-          css={css`
-            & {
-              position: absolute;
-              height: 100%;
-              width: 100%;
-              top: 0;
-              left: 0;
-              background-color: black;
-              object-fit: cover;
-            }
-          `}
-        />
+        {backgroundImg && (
+          <Img
+            fluid={backgroundImg}
+            css={css`
+              & {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                background-color: black;
+                object-fit: cover;
+              }
+            `}
+          />
+        )}
         <div
           css={css`
             & {

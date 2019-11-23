@@ -5,17 +5,36 @@ import styled from "@emotion/styled"
 import { Heading1, Heading2 } from "../elements/Headers"
 import { useSpring, animated } from "react-spring"
 import { Container } from "../components/Containers"
-
+import { graphql } from "gatsby"
 import Modal from "../components/Modal"
+import { FluidObject } from "gatsby-image"
 
-const background = require("../images/planet.jpg")
 const expandSound = require("../sounds/expand.mp3")
 
 interface IndexPage {
   location: any
+  data: {
+    backgroundImg: {
+      childImageSharp: {
+        fluid: FluidObject
+      }
+    }
+  }
 }
 
-function IndexPage({ location }: IndexPage) {
+export const query = graphql`
+  query {
+    backgroundImg: file(relativePath: { eq: "planet.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1200) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
+
+function IndexPage({ location, data }: IndexPage) {
   const grow = useSpring({
     config: { duration: 600 },
     to: { height: "100%", width: "100%" },
@@ -32,7 +51,7 @@ function IndexPage({ location }: IndexPage) {
 
   return (
     <animated.div style={grow}>
-      <Layout backgroundImg={background}>
+      <Layout backgroundImg={data.backgroundImg.childImageSharp.fluid}>
         <Container>
           <Header>
             <Heading1>Lillo</Heading1>
