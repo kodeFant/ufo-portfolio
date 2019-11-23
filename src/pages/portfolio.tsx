@@ -5,6 +5,7 @@ import { Container } from "../components/Containers"
 import ClickSound from "../components/ClickSound"
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
+import { mq } from "../elements/MediaQuery"
 const blueBorder = require("../images/border-blue.png")
 
 export default function PortfolioPage() {
@@ -22,21 +23,21 @@ export default function PortfolioPage() {
             {">>"}
           </PortfolioNavLink>
         </PortfolioNav>
-        <PortFolioIcon>Icon</PortFolioIcon>
+        <PortFolioIcon href="https://tipzer.no">Icon</PortFolioIcon>
 
         <PortfolioData>
-          <PortfolioHeader>Tipzer.no</PortfolioHeader>
+          <h1>Tipzer.no</h1>
           <div>
-            Varighet på engasjement............................
-            <span>5 måneder</span>
+            Varighet på engasjemen<Dots>............................</Dots>
+            <DataField>5 måneder</DataField>
           </div>
           <div>
-            Teknologier..........................
-            <span>React, Laravel, GraphQL</span>
+            Teknologier<Dots>..........................</Dots>
+            <DataField>React, Laravel, GraphQL</DataField>
           </div>
           <div>
-            Oppdragsgiver....................................
-            <span>Nextmark AS</span>
+            Oppdragsgiver<Dots>....................................</Dots>
+            <DataField>Nextmark AS</DataField>
           </div>
         </PortfolioData>
         <PortFolioDescription>
@@ -51,25 +52,57 @@ export default function PortfolioPage() {
   )
 }
 
-const PortfolioData = styled.aside`
-  grid-area: data;
-  padding: 0 2rem;
-  color: #84b0dc;
-  text-shadow: 4px 4px 0px #00103d, -4px -4px 0px #00103d, -4px 4px 0px #00103d,
-    4px -4px 0px #00103d;
-  font-size: 2.5rem;
-
-  span {
-    color: white;
+const DataField = styled.span`
+  color: white;
+  display: block;
+  ${mq[2]} {
+    display: inline;
   }
 `
-const PortFolioDescription = styled.div`
-  grid-area: desc;
-  padding: 2rem 2rem;
-  color: #84b0dc;
-  text-shadow: 4px 4px 0px #00103d, -4px -4px 0px #00103d, -4px 4px 0px #00103d,
-    4px -4px 0px #00103d;
-  font-size: 2.5rem;
+
+const Dots = styled.span`
+  display: none;
+  ${mq[2]} {
+    display: inline;
+  }
+`
+
+const StyledContainer = styled(Container)`
+  background: rgb(64, 36, 104);
+  background: radial-gradient(
+    circle,
+    rgba(64, 36, 104, 1) 0%,
+    rgba(0, 12, 32, 1) 100%
+  );
+
+  width: 100%;
+  overflowy: scroll;
+  height: 100%;
+  display: grid;
+  justify-items: start;
+  align-items: start;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas:
+    "nav"
+    "icon"
+    "data"
+    "desc";
+  font-size: 2rem;
+  ${mq[2]} {
+    font-size: 2.5rem;
+    grid-template-columns: 1fr 1fr 400px;
+    grid-template-rows: 5fr 38fr 57fr;
+    display: grid;
+    grid-template-areas:
+      "nav  nav  icon"
+      "data data icon"
+      "desc desc desc";
+  }
+
+  padding: 0;
+  text-align: left;
 `
 
 const PortfolioNav = styled.nav`
@@ -78,12 +111,30 @@ const PortfolioNav = styled.nav`
   padding: 0.5rem;
 `
 
-const PortFolioIcon = styled.aside`
+const PortfolioData = styled.aside`
+  grid-area: data;
+  padding: 0 2rem;
+  color: #84b0dc;
+  text-shadow: 4px 4px 0px #00103d, -4px -4px 0px #00103d, -4px 4px 0px #00103d,
+    4px -4px 0px #00103d;
+`
+
+const PortFolioDescription = styled.div`
+  grid-area: desc;
+  padding: 2rem 2rem;
+  color: #84b0dc;
+  text-shadow: 4px 4px 0px #00103d, -4px -4px 0px #00103d, -4px 4px 0px #00103d,
+    4px -4px 0px #00103d;
+`
+
+const PortFolioIcon = styled.a`
   grid-area: icon;
-  justify-self: end;
-  align-self: start;
-  height: 400px;
-  width: 400px;
+  ${mq[2]} {
+    justify-self: end;
+    align-self: start;
+    height: 400px;
+    width: 400px;
+  }
   background-color: brown;
   border: 20px solid #65cdbd;
   border-image: url(${blueBorder}) 28;
@@ -97,36 +148,8 @@ const PortFolioIcon = styled.aside`
     rgba(92, 44, 15, 1) 0%,
     rgba(32, 5, 0, 1) 100%
   );
-`
-
-const PortfolioHeader = styled.h1`
-  color: #84b0dc;
-  text-shadow: 4px 4px 0px #00103d, -4px -4px 0px #00103d, -4px 4px 0px #00103d,
-    4px -4px 0px #00103d;
-  text-align: left;
-`
-
-const StyledContainer = styled(Container)`
-  background: rgb(64, 36, 104);
-  background: radial-gradient(
-    circle,
-    rgba(64, 36, 104, 1) 0%,
-    rgba(0, 12, 32, 1) 100%
-  );
-  display: grid;
-  width: 100%;
-  height: 100%;
-  grid-template-columns: 1fr 1fr 400px;
-  justify-items: start;
-  align-items: start;
-  grid-grap: 1rem;
-  grid-template-rows: 5fr 38fr 57fr;
-  grid-template-areas:
-    "nav  nav  icon"
-    "data data icon"
-    "desc desc desc";
-  padding: 0;
-  text-align: left;
+  color: white;
+  text-decoration: none;
 `
 
 const PortfolioNavLink = styled(Link)`
@@ -136,6 +159,7 @@ const PortfolioNavLink = styled(Link)`
   text-shadow: 2px 2px 0px #9c98b9, -2px -2px 0px #9c98b9, -2px 2px 0px #9c98b9,
     2px -2px 0px #9c98b9;
   text-decoration: none;
+  max-width: 30vw;
   width: 150px;
   margin-right: 0.5rem;
   text-align: center;
