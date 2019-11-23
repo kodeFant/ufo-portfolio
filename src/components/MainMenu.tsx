@@ -21,17 +21,17 @@ export default function MainMenu() {
   return (
     <MainMenuContainer>
       <Selections>
-        <ButtonLink gridArea="one" to="/portfolio">
+        <ButtonLink gridarea="one" to="/portfolio">
           Portefølje
         </ButtonLink>
-        <ButtonLink gridArea="two" to="/om">
+        <ButtonLink gridarea="two" to="/om">
           Om meg
         </ButtonLink>
-        <ButtonLink gridArea="three" to="/faq">
+        <ButtonLink gridarea="three" to="/faq">
           Spørsmål
         </ButtonLink>
         <Button
-          gridArea="four"
+          gridarea="four"
           onClick={() => {
             openModal(Modal.SOCIAL_MEDIA)
             playSound()
@@ -40,7 +40,7 @@ export default function MainMenu() {
           Sosiale medier
         </Button>
         <Button
-          gridArea="five"
+          gridarea="five"
           onClick={() => {
             openModal(Modal.CONTACT_FORM)
             playSound()

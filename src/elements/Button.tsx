@@ -35,18 +35,18 @@ const defaultButton = `
 `
 
 interface IButton {
-  gridArea?: string
+  gridarea?: string
 }
 
 export const Button = styled.button<IButton>`
   ${defaultButton}
-  ${({ gridArea }) => gridArea && `grid-area: ${gridArea}`};
+  ${({ gridarea }) => gridarea && `grid-area: ${gridarea}`};
   cursor: url(${cursor}) 0 0, auto;
 `
 
 export const ButtonLink = styled(Link)<IButton>`
   ${defaultButton}
   text-decoration: none;
-  ${({ gridArea }) => gridArea && `grid-area: ${gridArea}`};
+  ${({ gridarea }) => gridarea && `grid-area: ${gridarea}`};
   cursor: url(${cursor}) 0 0, auto;
 `
