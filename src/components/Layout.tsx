@@ -4,6 +4,7 @@ import { Global, css } from "@emotion/core"
 import emotionNormalize from "emotion-normalize"
 import Providers from "../state/Providers"
 import Img, { FluidObject } from "gatsby-image"
+import { mq } from "../elements/MediaQuery"
 const borderImg = require("../images/border.png")
 const cursor = require("../images/cursor.png")
 
@@ -78,7 +79,9 @@ export default function Layout({
             font-family: "VT323", monospace;
             font-size: 2rem;
           }
-          * {
+          *,
+          *::after,
+          *::before {
             box-sizing: border-box;
           }
           ::selection {
@@ -105,5 +108,10 @@ const LayoutContainer = styled.div<ILayoutContainer>`
     `border-image: url(${customBorder}) ${customBorderSize};`}
   color: white;
   text-align: center;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  ${mq[3]} {
+    overflow: hidden;
+  }
 `

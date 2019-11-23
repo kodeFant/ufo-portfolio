@@ -28,15 +28,15 @@ export default function PortfolioPage() {
         <PortfolioData>
           <h1>Tipzer.no</h1>
           <div>
-            Varighet på engasjemen<Dots>............................</Dots>
+            Varighet på engasjemen<Dots>........</Dots>
             <DataField>5 måneder</DataField>
           </div>
           <div>
-            Teknologier<Dots>..........................</Dots>
+            Teknologier<Dots>...................</Dots>
             <DataField>React, Laravel, GraphQL</DataField>
           </div>
           <div>
-            Oppdragsgiver<Dots>....................................</Dots>
+            Oppdragsgiver<Dots>.................</Dots>
             <DataField>Nextmark AS</DataField>
           </div>
         </PortfolioData>
@@ -55,14 +55,14 @@ export default function PortfolioPage() {
 const DataField = styled.span`
   color: white;
   display: block;
-  ${mq[2]} {
+  ${mq[3]} {
     display: inline;
   }
 `
 
 const Dots = styled.span`
   display: none;
-  ${mq[2]} {
+  ${mq[3]} {
     display: inline;
   }
 `
@@ -76,21 +76,29 @@ const StyledContainer = styled(Container)`
   );
 
   width: 100%;
-  overflowy: scroll;
   height: 100%;
   display: grid;
   justify-items: start;
   align-items: start;
   grid-gap: 1rem;
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto auto;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
     "nav"
     "icon"
     "data"
     "desc";
   font-size: 2rem;
-  ${mq[2]} {
+  ${mq[1]} {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "nav  nav"
+      "data icon"
+      "data icon"
+      "desc desc";
+  }
+  ${mq[3]} {
     font-size: 2.5rem;
     grid-template-columns: 1fr 1fr 400px;
     grid-template-rows: 5fr 38fr 57fr;
@@ -109,6 +117,30 @@ const PortfolioNav = styled.nav`
   grid-area: nav;
   display: flex;
   padding: 0.5rem;
+  width: 100%;
+  justify-content: center;
+
+  ${mq[0]} {
+    justify-content: flex-start;
+  }
+`
+
+const PortfolioNavLink = styled(Link)`
+  background-color: #b8b9d0;
+  color: #c7c8dc;
+  padding: 0.3rem;
+  text-shadow: 2px 2px 0px #9c98b9, -2px -2px 0px #9c98b9, -2px 2px 0px #9c98b9,
+    2px -2px 0px #9c98b9;
+  text-decoration: none;
+  width: 90px;
+  margin-right: 0.5rem;
+  text-align: center;
+
+  &:active {
+    color: #9c98b9;
+    text-shadow: 2px 2px 0px #c7c8dc, -2px -2px 0px #c7c8dc,
+      -2px 2px 0px #c7c8dc, 2px -2px 0px #c7c8dc;
+  }
 `
 
 const PortfolioData = styled.aside`
@@ -129,19 +161,15 @@ const PortFolioDescription = styled.div`
 
 const PortFolioIcon = styled.a`
   grid-area: icon;
-  ${mq[2]} {
-    justify-self: end;
-    align-self: start;
-    height: 400px;
-    width: 400px;
-  }
-  background-color: brown;
-  border: 20px solid #65cdbd;
-  border-image: url(${blueBorder}) 28;
-  border-radius: 22px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  height: 200px;
+  width: 100%;
+
+  background-color: brown;
   background: rgb(92, 44, 15);
   background: radial-gradient(
     circle,
@@ -149,24 +177,16 @@ const PortFolioIcon = styled.a`
     rgba(32, 5, 0, 1) 100%
   );
   color: white;
-  text-decoration: none;
-`
 
-const PortfolioNavLink = styled(Link)`
-  background-color: #b8b9d0;
-  color: #c7c8dc;
-  padding: 0.3rem;
-  text-shadow: 2px 2px 0px #9c98b9, -2px -2px 0px #9c98b9, -2px 2px 0px #9c98b9,
-    2px -2px 0px #9c98b9;
-  text-decoration: none;
-  max-width: 30vw;
-  width: 150px;
-  margin-right: 0.5rem;
-  text-align: center;
+  border: 28px solid #65cdbd;
+  border-image: url(${blueBorder}) 28;
+  border-radius: 22px;
 
-  &:active {
-    color: #9c98b9;
-    text-shadow: 2px 2px 0px #c7c8dc, -2px -2px 0px #c7c8dc,
-      -2px 2px 0px #c7c8dc, 2px -2px 0px #c7c8dc;
+  text-decoration: none;
+  ${mq[1]} {
+    justify-self: end;
+    align-self: start;
+    height: 400px;
+    width: 400px;
   }
 `
