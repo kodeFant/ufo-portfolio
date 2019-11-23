@@ -217,6 +217,7 @@ const StyledInput = styled(Field)`
   color: ${lighterGreen};
   font-size: 3rem;
   padding: 0 2rem;
+  outline: none;
 `
 
 const FormFieldContainer = styled.div`

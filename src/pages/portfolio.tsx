@@ -26,18 +26,18 @@ export default function PortfolioPage() {
         <PortFolioIcon href="https://tipzer.no">Icon</PortFolioIcon>
 
         <PortfolioData>
-          <h1>Tipzer.no</h1>
+          <h1 style={{ margin: 0 }}>Tipzer.no</h1>
           <div>
-            Varighet på engasjemen<Dots>........</Dots>
+            Varighet<Dots>......................</Dots>
             <DataField>5 måneder</DataField>
-          </div>
-          <div>
-            Teknologier<Dots>...................</Dots>
-            <DataField>React, Laravel, GraphQL</DataField>
           </div>
           <div>
             Oppdragsgiver<Dots>.................</Dots>
             <DataField>Nextmark AS</DataField>
+          </div>
+          <div>
+            Teknologier<Dots>...................</Dots>
+            <DataField>React, Laravel, GraphQL</DataField>
           </div>
         </PortfolioData>
         <PortFolioDescription>
@@ -55,14 +55,14 @@ export default function PortfolioPage() {
 const DataField = styled.span`
   color: white;
   display: block;
-  ${mq[3]} {
+  ${mq[2]} {
     display: inline;
   }
 `
 
 const Dots = styled.span`
   display: none;
-  ${mq[3]} {
+  ${mq[2]} {
     display: inline;
   }
 `
@@ -88,19 +88,15 @@ const StyledContainer = styled(Container)`
     "icon"
     "data"
     "desc";
-  font-size: 2rem;
-  ${mq[1]} {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto auto;
-    grid-template-areas:
-      "nav  nav"
-      "data icon"
-      "data icon"
-      "desc desc";
+  font-size: 1.8rem;
+
+  ${mq[0]} {
+    grid-template-columns: 1fr 1fr 300px;
   }
-  ${mq[3]} {
-    font-size: 2.5rem;
-    grid-template-columns: 1fr 1fr 400px;
+
+  ${mq[1]} {
+    font-size: 2rem;
+    grid-template-columns: 1fr 1fr 350px;
     grid-template-rows: 5fr 38fr 57fr;
     display: grid;
     grid-template-areas:
@@ -161,6 +157,8 @@ const PortFolioDescription = styled.div`
 
 const PortFolioIcon = styled.a`
   grid-area: icon;
+  justify-self: end;
+  align-self: start;
 
   display: flex;
   justify-content: center;
@@ -183,10 +181,9 @@ const PortFolioIcon = styled.a`
   border-radius: 22px;
 
   text-decoration: none;
+
   ${mq[1]} {
-    justify-self: end;
-    align-self: start;
-    height: 400px;
-    width: 400px;
+    height: 350px;
+    width: 350px;
   }
 `
