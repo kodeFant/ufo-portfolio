@@ -1,9 +1,9 @@
 {
   "name": "lillo-tech",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Web developer Portfolio made for Lars Lillo Ulvestad",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Lars Lillo Ulvestad <lillo@kodefant.no>",
   "dependencies": {
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.23",

@@ -10,12 +10,8 @@ import styled from "@emotion/styled"
 import { Formik, Form, Field, FormikProps, ErrorMessage } from "formik"
 import { Heading2 } from "../../elements/Headers"
 import * as yup from "yup"
-import {
-  lighterGreen,
-  blackishGreen,
-  lightestGreen,
-  mainGreen,
-} from "../../utilities/Colors"
+import { lighterGreen, blackishGreen } from "../../utilities/Colors"
+import { encode } from "querystring"
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -25,21 +21,9 @@ const validationSchema = yup.object().shape({
   message: yup.string().required("Legg igjen beskjed"),
 })
 
-type EncodeFormData = IForm & INetlifyFormHeaders
-
-interface INetlifyFormHeaders {
-  "form-name": string
-}
-
 interface IForm {
   email: string
   message: string
-}
-
-const encode = (data: any) => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&")
 }
 
 const initialValues: IForm = { email: "", message: "" }
@@ -123,10 +107,13 @@ export default function ContactModal() {
                       headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
                       },
-                      body: encode({ "form-name": "contact", ...values }),
+                      body: encode({ "form-name": "kontaktskjema", ...values }),
                     })
                       .then(() => {
-                        console.log("Success")
+                        console.log(
+                          "Success",
+                          encode({ "form-name": "kontaktskjema", ...values })
+                        )
                         setFormStage(() => SENT)
                       })
                       .catch(err => {
