@@ -45,6 +45,7 @@ function IndexPage({ location }: IndexPage) {
       <audio ref={audio} id="audio">
         <source src={expandSound} type="audio/mpeg" />
       </audio>
+      <form data-netlify="true" name="kontaktskjema" />
     </animated.div>
   )
 }
