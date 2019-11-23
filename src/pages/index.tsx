@@ -68,7 +68,11 @@ function IndexPage({ location, data }: IndexPage) {
         data-netlify="true"
         name="kontaktskjema"
         netlify-honeypot="bot-field"
-      />
+        style={{ display: "none" }}
+      >
+        <input type="text" name="email" />
+        <input type="text" name="message" />
+      </form>
     </animated.div>
   )
 }
