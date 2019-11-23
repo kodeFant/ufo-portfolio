@@ -7,14 +7,7 @@ import { Button } from "../../elements/Button"
 import { css } from "@emotion/core"
 import { useImmer } from "use-immer"
 import styled from "@emotion/styled"
-import {
-  Formik,
-  Form,
-  Field,
-  FormikErrors,
-  FormikProps,
-  ErrorMessage,
-} from "formik"
+import { Formik, Form, Field, FormikProps, ErrorMessage } from "formik"
 import axios from "axios"
 import { Heading2 } from "../../elements/Headers"
 import * as yup from "yup"
@@ -113,7 +106,12 @@ export default function ContactModal() {
                   initialValues={initialValues}
                   onSubmit={values => {
                     console.log("Submit :)", values)
-                    setFormStage(() => SENT)
+
+                    axios({
+                      method: "POST",
+                      url: "/",
+                      params: values,
+                    }).then(() => setFormStage(() => SENT))
                   }}
                   validationSchema={validationSchema}
                 >
