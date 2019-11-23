@@ -124,7 +124,7 @@ export default function ContactModal() {
                 >
                   {props => {
                     return (
-                      <StyledForm>
+                      <StyledForm data-netlify="true" name="kontaktskjema">
                         <Heading2 style={{ color: lighterGreen }}>
                           {formStage === EMAIL && "Fyll inn din epost"}
                           {formStage === MESSAGE && "Skriv beskjed"}
