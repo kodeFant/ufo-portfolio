@@ -109,9 +109,19 @@ export default function ContactModal() {
 
                     axios({
                       method: "POST",
+                      headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                      },
                       url: "/",
-                      params: values,
-                    }).then(() => setFormStage(() => SENT))
+                      params: { "form-name": "contact", ...values },
+                    })
+                      .then(() => {
+                        console.log("Success")
+                        setFormStage(() => SENT)
+                      })
+                      .catch(err => {
+                        console.error("Form Error", err)
+                      })
                   }}
                   validationSchema={validationSchema}
                 >
@@ -140,6 +150,7 @@ export default function ContactModal() {
                                 name="message"
                                 component="textarea"
                                 autoFocus={true}
+                                spellCheck={false}
                                 style={{ color: "white" }}
                               />
                               <ErrorMessage name="email" />
