@@ -11,7 +11,9 @@ import {
 const cursor = require("../images/cursor.png")
 
 const defaultButton = `
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: ${darkerGreen};
     padding: 1rem;
     color: ${lightestGreen};

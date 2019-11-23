@@ -10,12 +10,22 @@ const cursor = require("../images/cursor.png")
 interface ILayout {
   children: React.ReactNode
   backgroundImg?: FluidObject | FluidObject[]
+  customBorder?: string
+  customBorderSize?: number
 }
 
-export default function Layout({ children, backgroundImg }: ILayout) {
+export default function Layout({
+  children,
+  backgroundImg,
+  customBorder,
+  customBorderSize,
+}: ILayout) {
   return (
     <Providers>
-      <LayoutContainer>
+      <LayoutContainer
+        customBorder={customBorder}
+        customBorderSize={customBorderSize}
+      >
         {backgroundImg && (
           <Img
             fluid={backgroundImg}
@@ -80,13 +90,19 @@ export default function Layout({ children, backgroundImg }: ILayout) {
   )
 }
 
-const LayoutContainer = styled.div`
+interface ILayoutContainer {
+  customBorder?: string
+  customBorderSize?: number
+}
+
+const LayoutContainer = styled.div<ILayoutContainer>`
   width: 100%;
   height: 100%;
   position: relative;
   background-color: rgba(32, 20, 20, 1);
   border: 20px solid #65cdbd;
-  border-image: url(${borderImg}) 20;
+  ${({ customBorder = borderImg, customBorderSize = 20 }) =>
+    `border-image: url(${customBorder}) ${customBorderSize};`}
   color: white;
   text-align: center;
   overflow: hidden;

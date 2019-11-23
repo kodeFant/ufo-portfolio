@@ -1,8 +1,6 @@
 import React, { useRef } from "react"
 import styled from "@emotion/styled"
 import { mq } from "../elements/MediaQuery"
-import { navigate } from "gatsby"
-
 import ModalState from "../state/modal"
 import { Modal } from "../types/Modal"
 import { Button, ButtonLink } from "../elements/Button"
