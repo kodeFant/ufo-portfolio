@@ -37,47 +37,14 @@ export default function SocialMediaModal() {
               key={key}
               style={{ ...props, width: "500px", maxWidth: "100%" }}
             >
-              <ModalContainer
-                css={css`
-                  & {
-                    height: 100%;
-                    background-color: ${darkestGreen};
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 1rem;
-                    text-align: center;
-                    overflow: hidden;
-                  }
-                `}
+              <StyledModalContainer
                 onClick={(e: React.SyntheticEvent) => {
                   e.stopPropagation()
                 }}
               >
-                <h2
-                  css={css`
-                    color: ${mainGreen};
-                    text-shadow: 2px 2px 0px ${darkestGreen},
-                      -2px -2px 0px ${darkestGreen},
-                      -2px 2px 0px ${darkestGreen}, 2px -2px 0px ${darkestGreen};
-                    text-transform: uppercase;
-                    font-size: 3rem;
-                    font-weight: 500;
-                    margin: 0;
-                  `}
-                >
-                  Sosiale medier
-                </h2>
+                <ModalHeader>Sosiale medier</ModalHeader>
 
-                <div
-                  css={css`
-                    & {
-                      text-align: left;
-                      width: 100%;
-                    }
-                  `}
-                >
+                <SocialMediaLinkList>
                   <SocialMediaLink href="https://www.linkedin.com/in/larslilloulvestad/">
                     LinkedIn
                   </SocialMediaLink>
@@ -87,7 +54,7 @@ export default function SocialMediaModal() {
                   <SocialMediaLink href="https://github.com/kodeFant">
                     Github
                   </SocialMediaLink>
-                </div>
+                </SocialMediaLinkList>
 
                 <Button
                   onClick={() => {
@@ -102,13 +69,40 @@ export default function SocialMediaModal() {
                 >
                   Lukk
                 </Button>
-              </ModalContainer>
+              </StyledModalContainer>
             </animated.div>
           )
       )}
     </Backdrop>
   )
 }
+
+const ModalHeader = styled.h2`
+  color: ${mainGreen};
+  text-shadow: 2px 2px 0px ${darkestGreen}, -2px -2px 0px ${darkestGreen},
+    -2px 2px 0px ${darkestGreen}, 2px -2px 0px ${darkestGreen};
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: 500;
+  margin: 0;
+`
+
+const StyledModalContainer = styled(ModalContainer)`
+  height: 100%;
+  background-color: ${darkestGreen};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+  overflow: hidden;
+`
+
+const SocialMediaLinkList = styled.div`
+  text-align: left;
+  width: 100%;
+`
 
 const SocialMediaLink = styled.a`
   display: block;

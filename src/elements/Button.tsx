@@ -10,8 +10,7 @@ import {
 } from "../utilities/Colors"
 const cursor = require("../images/cursor.png")
 
-const defaultButton = css`
-  & {
+const defaultButton = `
     display: block;
     background-color: ${darkerGreen};
     padding: 1rem;
@@ -33,7 +32,6 @@ const defaultButton = css`
       text-shadow: 2px 2px 0px ${lightestGreen}, -2px -2px 0px ${lightestGreen},
         -2px 2px 0px ${lightestGreen}, 2px -2px 0px ${lightestGreen};
     }
-  }
 `
 
 interface IButton {
