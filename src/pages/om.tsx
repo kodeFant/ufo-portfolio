@@ -3,6 +3,7 @@ import Layout from "../components/Layout"
 
 import { Container } from "../components/Containers"
 import { ButtonLink } from "../elements/Button"
+import ClickSound from "../components/ClickSound"
 
 const AboutPage = () => (
   <Layout>
@@ -12,6 +13,7 @@ const AboutPage = () => (
         Tilbake
       </ButtonLink>
     </Container>
+    <ClickSound />
   </Layout>
 )
 

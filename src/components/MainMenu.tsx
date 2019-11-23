@@ -5,7 +5,7 @@ import { navigate } from "gatsby"
 
 import ModalState from "../state/modal"
 import { Modal } from "../types/Modal"
-import { Button } from "../elements/Button"
+import { Button, ButtonLink } from "../elements/Button"
 
 const clickSound = require("../sounds/click.mp3")
 
@@ -21,39 +21,15 @@ export default function MainMenu() {
   return (
     <MainMenuContainer>
       <Selections>
-        <Button
-          gridArea="one"
-          onClick={() => {
-            playSound()
-            setTimeout(() => {
-              navigate("portfolio")
-            }, 300)
-          }}
-        >
+        <ButtonLink gridArea="one" to="/portfolio">
           Portefølje
-        </Button>
-        <Button
-          gridArea="two"
-          onClick={() => {
-            playSound()
-            setTimeout(() => {
-              navigate("om")
-            }, 300)
-          }}
-        >
+        </ButtonLink>
+        <ButtonLink gridArea="two" to="/om">
           Om meg
-        </Button>
-        <Button
-          gridArea="three"
-          onClick={() => {
-            playSound()
-            setTimeout(() => {
-              navigate("faq")
-            }, 300)
-          }}
-        >
+        </ButtonLink>
+        <ButtonLink gridArea="three" to="/faq">
           Spørsmål
-        </Button>
+        </ButtonLink>
         <Button
           gridArea="four"
           onClick={() => {
