@@ -8,7 +8,6 @@ import { css } from "@emotion/core"
 import { useImmer } from "use-immer"
 import styled from "@emotion/styled"
 import { Formik, Form, Field, FormikProps, ErrorMessage } from "formik"
-import axios from "axios"
 import { Heading2 } from "../../elements/Headers"
 import * as yup from "yup"
 import {
@@ -26,9 +25,21 @@ const validationSchema = yup.object().shape({
   message: yup.string().required("Legg igjen beskjed"),
 })
 
+type EncodeFormData = IForm & INetlifyFormHeaders
+
+interface INetlifyFormHeaders {
+  "form-name": string
+}
+
 interface IForm {
   email: string
   message: string
+}
+
+const encode = (data: any) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
 }
 
 const initialValues: IForm = { email: "", message: "" }
@@ -107,13 +118,12 @@ export default function ContactModal() {
                   onSubmit={values => {
                     console.log("Submit :)", values)
 
-                    axios({
+                    fetch("/", {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
                       },
-                      url: "/",
-                      params: { "form-name": "contact", ...values },
+                      body: encode({ "form-name": "contact", ...values }),
                     })
                       .then(() => {
                         console.log("Success")
