@@ -27,6 +27,10 @@ const responsivePortfolioContainer = fp({
     "desc desc desc"
     `,
   ],
+  h1: {
+    fontSize: ["2.8rem", "2.8rem", "3.2rem", "4rem"],
+    margin: ["1rem 0", "0"],
+  },
 })
 
 export const PortfolioContainer = styled(Container)`
