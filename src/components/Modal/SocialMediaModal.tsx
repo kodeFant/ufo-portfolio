@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 import ModalState from "../../state/modal"
 import { useTransition, animated } from "react-spring"
-import { useStaticQuery, graphql } from "gatsby"
-import { Modal } from "../../types/Modal"
 import Backdrop from "./Backdrop"
 import { ModalContainer } from "../../elements/Modal"
 import { css } from "@emotion/core"

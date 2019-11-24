@@ -20,6 +20,7 @@
     "gatsby-plugin-tslint": "^0.0.2",
     "gatsby-plugin-typescript": "^2.1.18",
     "gatsby-source-filesystem": "^2.1.36",
+    "gatsby-transformer-remark": "^2.6.37",
     "gatsby-transformer-sharp": "^2.3.3",
     "immer": "^5.0.0",
     "react": "^16.11.0",
@@ -35,7 +36,9 @@
   "devDependencies": {
     "@types/facepaint": "^1.2.1",
     "@types/yup": "^0.26.24",
+    "date-fns": "^2.8.1",
     "prettier": "^1.19.1",
+    "styled-components": "^4.4.1",
     "tslint": "^5.20.1",
     "tslint-loader": "^3.5.4",
     "tslint-react": "^4.1.0",

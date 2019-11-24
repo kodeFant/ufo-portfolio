@@ -21,12 +21,15 @@ export default function DottedField({ entry, value }: IDottedField) {
 }
 
 const dataFieldResponsive = fp({
-  display: ["block", "block", "block", "inline"],
+  display: ["block", "block", "block", "inline-block"],
 })
 
 const DataField = styled.span`
   color: white;
   display: block;
+  &::first-letter {
+    text-transform: uppercase;
+  }
   ${dataFieldResponsive}
 `
 
