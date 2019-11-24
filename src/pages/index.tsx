@@ -8,6 +8,7 @@ import { Container } from "../components/Containers"
 import { graphql } from "gatsby"
 import Modal from "../components/Modal"
 import { FluidObject } from "gatsby-image"
+import SEO from "../components/SEO"
 
 const expandSound = require("../sounds/expand.mp3")
 
@@ -55,6 +56,7 @@ function IndexPage({ location, data }: IndexPage) {
         backgroundImg={data.backgroundImg.childImageSharp.fluid}
         shadow={true}
       >
+        <SEO title="Hjem" />
         <Container>
           <Header>
             <Heading1>Lillo</Heading1>

@@ -39,15 +39,21 @@ export const PortfolioContainer = styled(Container)`
   padding: 0;
   text-align: left;
   ${responsivePortfolioContainer}
+
+  h1 {
+    word-break: break-word;
+  }
 `
 
 export const PortfolioNav = styled.nav`
   grid-area: nav;
+  grid-gap: 0.3rem;
   display: flex;
   padding: 0.5rem;
   width: 100%;
   justify-content: center;
   ${mq[0]} {
+    grid-gap: 1rem;
     position: static;
     justify-content: flex-start;
   }
@@ -63,11 +69,15 @@ export const PortfolioNavLink = styled(Link)`
   width: 90px;
   margin-right: 0.5rem;
   text-align: center;
+  outline: outset 2px #d8d9e8;
+  border: outset 2px #d8d9e8;
 
   &:active {
     color: #9c98b9;
     text-shadow: 2px 2px 0px #c7c8dc, -2px -2px 0px #c7c8dc,
       -2px 2px 0px #c7c8dc, 2px -2px 0px #c7c8dc;
+    outline: inset 2px #d8d9e8;
+    border: inset 2px #d8d9e8;
   }
 `
 

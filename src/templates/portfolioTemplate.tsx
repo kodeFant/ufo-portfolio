@@ -14,6 +14,7 @@ import {
   PortfolioData,
   PortFolioDescription,
 } from "../elements/Portfolio"
+import SEO from "../components/SEO"
 const blueBorder = require("../images/border-blue.png")
 
 interface IPortfolioTemplate {
@@ -56,23 +57,24 @@ export default function PortfolioTemplate({
     lightColor,
   } = data.markdownRemark.frontmatter
   const { duration, next, prev } = pageContext
-  console.log("pageContext", pageContext)
   return (
     <Layout
       customBorder={blueBorder && blueBorder}
       customBorderSize={28}
       radial={true}
     >
+      <SEO title={title} />
       <PortfolioContainer>
         <PortfolioNav>
           <PortfolioNavLink to="/" state={{ muteSound: false }}>
             Ok
           </PortfolioNavLink>
-          <PortfolioNavLink to={`portfolio/${prev}`}>{"<<"}</PortfolioNavLink>
-          <PortfolioNavLink to={`portfolio/${next}`}>{">>"}</PortfolioNavLink>
+          <PortfolioNavLink to={`/portfolio/${prev}`}>{"<<"}</PortfolioNavLink>
+          <PortfolioNavLink to={`/portfolio/${next}`}>{">>"}</PortfolioNavLink>
         </PortfolioNav>
         <PortFolioIcon
           href={url}
+          target="_blank"
           radialColors={
             darkColor && lightColor
               ? { dark: darkColor, light: lightColor }

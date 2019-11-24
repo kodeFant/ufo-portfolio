@@ -8,7 +8,7 @@ interface IDottedField {
 }
 
 export default function DottedField({ entry, value }: IDottedField) {
-  const totalChars: number = 45
+  const totalChars: number = 46
   const entriesLength: number = entry.length + value.length
   const dots: number[] = Array.from(Array(totalChars - entriesLength).keys())
   return (
