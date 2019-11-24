@@ -51,7 +51,10 @@ function IndexPage({ location, data }: IndexPage) {
 
   return (
     <animated.div style={grow}>
-      <Layout backgroundImg={data.backgroundImg.childImageSharp.fluid}>
+      <Layout
+        backgroundImg={data.backgroundImg.childImageSharp.fluid}
+        shadow={true}
+      >
         <Container>
           <Header>
             <Heading1>Lillo</Heading1>

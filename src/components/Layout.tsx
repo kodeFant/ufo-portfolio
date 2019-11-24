@@ -13,6 +13,9 @@ interface ILayout {
   backgroundImg?: FluidObject | FluidObject[]
   customBorder?: string
   customBorderSize?: number
+  radial?: boolean
+  radialColors?: { dark: string; light: string }
+  shadow?: boolean
 }
 
 export default function Layout({
@@ -20,12 +23,17 @@ export default function Layout({
   backgroundImg,
   customBorder,
   customBorderSize,
+  radial,
+  radialColors,
+  shadow = false,
 }: ILayout) {
   return (
     <Providers>
       <LayoutContainer
         customBorder={customBorder}
         customBorderSize={customBorderSize}
+        radial={radial}
+        radialColors={radialColors}
       >
         {backgroundImg && (
           <Img
@@ -51,7 +59,9 @@ export default function Layout({
               width: 100%;
               top: 0;
               left: 0;
-              background-color: rgba(12, 8, 8, 0.8);
+              background-color: ${shadow
+                ? "rgba(12, 8, 8, 0.8)"
+                : "transparent"};
             }
           `}
         >
@@ -96,13 +106,33 @@ export default function Layout({
 interface ILayoutContainer {
   customBorder?: string
   customBorderSize?: number
+  radial?: boolean
+  radialColors?: { dark: string; light: string }
 }
 
 const LayoutContainer = styled.div<ILayoutContainer>`
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: rgba(32, 20, 20, 1);
+  background-color: ${({
+    radial,
+    radialColors = {
+      dark: "rgb(0, 12, 32)",
+      light: "rgb(64, 36, 104)",
+    },
+  }) => {
+    if (!radial) {
+      return `black`
+    } else if (radial) {
+      return `
+      background: ${radialColors.light};
+      background: radial-gradient(
+        circle at center center,
+        ${radialColors.light} 0%,
+        ${radialColors.dark} 100%
+      );`
+    }
+  }};
   border: 20px solid #65cdbd;
   ${({ customBorder = borderImg, customBorderSize = 20 }) =>
     `border-image: url(${customBorder}) ${customBorderSize};`}

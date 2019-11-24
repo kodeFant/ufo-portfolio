@@ -7,7 +7,7 @@ const blueBorder = require("../images/border-blue.png")
 const responsivePortfolioContainer = fp({
   gridTemplateColumns: [`1fr`, `1fr 1fr 300px`, `1fr 1fr 350px`],
   gridTemplateRows: [`auto auto auto`, `auto auto auto`, `5fr 38fr 57fr`],
-  fontSize: [`1.8rem`, `1.8rem`, `2rem`, `2.2rem`, `2.5rem`],
+  fontSize: [`1.8rem`, `1.8rem`, `1.8rem`, `1.8rem`, `2.5rem`],
   gridTemplateAreas: [
     `
     "nav"
@@ -16,10 +16,10 @@ const responsivePortfolioContainer = fp({
     "desc"
     `,
     `
-    "nav"
-    "icon"
-    "data"
-    "desc"
+    "nav nav nav"
+    "icon icon icon"
+    "data data data"
+    "desc desc desc"
     `,
     `
     "nav  nav  icon"
@@ -30,12 +30,6 @@ const responsivePortfolioContainer = fp({
 })
 
 export const PortfolioContainer = styled(Container)`
-  background: rgb(64, 36, 104);
-  background: radial-gradient(
-    circle,
-    rgba(64, 36, 104, 1) 0%,
-    rgba(0, 12, 32, 1) 100%
-  );
   width: 100%;
   height: 100%;
   display: grid;
@@ -53,8 +47,8 @@ export const PortfolioNav = styled.nav`
   padding: 0.5rem;
   width: 100%;
   justify-content: center;
-
   ${mq[0]} {
+    position: static;
     justify-content: flex-start;
   }
 `
@@ -93,7 +87,11 @@ export const PortFolioDescription = styled.div`
     4px -4px 0px #00103d;
 `
 
-export const PortFolioIcon = styled.a`
+interface IPortfolioIcon {
+  radialColors?: { dark: string; light: string }
+}
+
+export const PortFolioIcon = styled.a<IPortfolioIcon>`
   grid-area: icon;
   justify-self: end;
   align-self: start;
@@ -106,21 +104,30 @@ export const PortFolioIcon = styled.a`
   width: 100%;
 
   background-color: brown;
-  background: rgb(92, 44, 15);
-  background: radial-gradient(
+  background: ${({
+    radialColors = { dark: `rgba(32, 5, 0, 1)`, light: `rgba(92, 44, 15, 1)` },
+  }) => {
+    return `radial-gradient(
     circle,
-    rgba(92, 44, 15, 1) 0%,
-    rgba(32, 5, 0, 1) 100%
-  );
+    ${radialColors.light} 0%,
+    ${radialColors.dark} 100%
+  );`
+  }}
+
   color: white;
 
   border: 28px solid #65cdbd;
   border-image: url(${blueBorder}) 28;
-  border-radius: 22px;
+  border-radius: 30px;
 
   text-decoration: none;
 
+
   ${mq[1]} {
+    height: 300px;
+    width: 300px;
+  }
+  ${mq[3]} {
     height: 350px;
     width: 350px;
   }

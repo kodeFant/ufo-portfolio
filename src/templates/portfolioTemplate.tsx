@@ -25,6 +25,8 @@ interface IPortfolioTemplate {
         description: string
         url: string
         tech: string
+        darkColor?: string
+        lightColor?: string
       }
     }
     logo: {
@@ -50,20 +52,33 @@ export default function PortfolioTemplate({
     description,
     url,
     tech,
+    darkColor,
+    lightColor,
   } = data.markdownRemark.frontmatter
   const { duration, next, prev } = pageContext
   console.log("pageContext", pageContext)
   return (
-    <Layout customBorder={blueBorder && blueBorder} customBorderSize={28}>
+    <Layout
+      customBorder={blueBorder && blueBorder}
+      customBorderSize={28}
+      radial={true}
+    >
       <PortfolioContainer>
         <PortfolioNav>
-          <PortfolioNavLink to="/" state={{ muteSound: true }}>
+          <PortfolioNavLink to="/" state={{ muteSound: false }}>
             Ok
           </PortfolioNavLink>
           <PortfolioNavLink to={`portfolio/${prev}`}>{"<<"}</PortfolioNavLink>
           <PortfolioNavLink to={`portfolio/${next}`}>{">>"}</PortfolioNavLink>
         </PortfolioNav>
-        <PortFolioIcon href={url}>
+        <PortFolioIcon
+          href={url}
+          radialColors={
+            darkColor && lightColor
+              ? { dark: darkColor, light: lightColor }
+              : undefined
+          }
+        >
           <Img
             fadeIn={true}
             fixed={data.logo.childImageSharp.fixed}
