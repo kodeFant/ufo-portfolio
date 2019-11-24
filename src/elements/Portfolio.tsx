@@ -7,7 +7,7 @@ const blueBorder = require("../images/border-blue.png")
 const responsivePortfolioContainer = fp({
   gridTemplateColumns: [`1fr`, `1fr 1fr 300px`, `1fr 1fr 350px`],
   gridTemplateRows: [`auto auto auto`, `auto auto auto`, `5fr 38fr 57fr`],
-  fontSize: [`1.8rem`, `1.8rem`, `2rem`, `2.2rem`, `2.8rem`],
+  fontSize: [`1.8rem`, `1.8rem`, `2rem`, `2.2rem`, `2.5rem`],
   gridTemplateAreas: [
     `
     "nav"

@@ -24,6 +24,7 @@ interface IPortfolioTemplate {
         contractor: string
         description: string
         url: string
+        tech: string
       }
     }
     logo: {
@@ -48,6 +49,7 @@ export default function PortfolioTemplate({
     contractor,
     description,
     url,
+    tech,
   } = data.markdownRemark.frontmatter
   const { duration, next, prev } = pageContext
   console.log("pageContext", pageContext)
@@ -73,7 +75,7 @@ export default function PortfolioTemplate({
           <h1 style={{ margin: "0.5rem 0" }}>{title}</h1>
           <DottedField entry="Varighet" value={duration} />
           <DottedField entry="Oppdragsgiver" value={contractor} />
-          <DottedField entry="Teknologier" value="React, Laravel, GraphQL" />
+          <DottedField entry="Teknologier" value={tech} />
         </PortfolioData>
         <PortFolioDescription>{description}</PortFolioDescription>
       </PortfolioContainer>
@@ -93,6 +95,9 @@ export const pageQuery = graphql`
         finished
         contractor
         url
+        tech
+        darkColor
+        lightColor
       }
     }
     logo: file(relativePath: { eq: $logo }) {
