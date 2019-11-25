@@ -7,7 +7,7 @@ const blueBorder = require("../images/border-blue.png")
 const responsivePortfolioContainer = fp({
   gridTemplateColumns: [`1fr`, `1fr 1fr 300px`, `1fr 1fr 350px`],
   gridTemplateRows: [`auto auto auto`, `auto auto auto`, `5fr 38fr 57fr`],
-  fontSize: [`1.8rem`, `1.8rem`, `1.8rem`, `1.8rem`, `2.5rem`],
+  fontSize: [`1.8rem`, `1.8rem`, `1.8rem`, `1.7rem`, `2.4rem`],
   gridTemplateAreas: [
     `
     "nav"
@@ -144,5 +144,14 @@ export const PortFolioIcon = styled.a<IPortfolioIcon>`
   ${mq[3]} {
     height: 350px;
     width: 350px;
+  }
+`
+
+export const TechList = styled.aside`
+  margin-top: 3rem;
+  .header {
+    color: white;
+  }
+  .list {
   }
 `

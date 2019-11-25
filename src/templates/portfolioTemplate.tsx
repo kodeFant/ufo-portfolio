@@ -13,6 +13,7 @@ import {
   PortFolioIcon,
   PortfolioData,
   PortFolioDescription,
+  TechList,
 } from "../elements/Portfolio"
 import SEO from "../components/SEO"
 const blueBorder = require("../images/border-blue.png")
@@ -25,9 +26,10 @@ interface IPortfolioTemplate {
         contractor: string
         description: string
         url: string
-        tech: string
+        tech: string[]
         darkColor?: string
         lightColor?: string
+        started: string
       }
     }
     logo: {
@@ -55,8 +57,10 @@ export default function PortfolioTemplate({
     tech,
     darkColor,
     lightColor,
+    started,
   } = data.markdownRemark.frontmatter
   const { duration, next, prev } = pageContext
+  console.log("tech", tech)
   return (
     <Layout
       customBorder={blueBorder && blueBorder}
@@ -90,11 +94,24 @@ export default function PortfolioTemplate({
 
         <PortfolioData>
           <h1 style={{ margin: "0.5rem 0" }}>{title}</h1>
+          <DottedField entry="Påbegynt" value={started} />
           <DottedField entry="Varighet" value={duration} />
           <DottedField entry="Oppdragsgiver" value={contractor} />
-          <DottedField entry="Teknologier" value={tech} />
         </PortfolioData>
-        <PortFolioDescription>{description}</PortFolioDescription>
+        <PortFolioDescription>
+          {description}
+          <TechList>
+            <span className="header">Teknologier: </span>
+            <div className="list">
+              {tech
+                .sort()
+                .map(
+                  (technology, index, arr) =>
+                    `${technology}${arr.length - 1 !== index ? ", " : ""}`
+                )}
+            </div>
+          </TechList>
+        </PortFolioDescription>
       </PortfolioContainer>
 
       <ClickSound />
@@ -108,7 +125,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         description
-        started
+        started(formatString: "MMMM YYYY", locale: "nb-NO")
         finished
         contractor
         url

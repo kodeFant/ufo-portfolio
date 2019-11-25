@@ -7,7 +7,7 @@ description: "Brillante leverer profesjonelle musikere til bedriftsmarkedet og p
 started: "2019-01-01"
 finished: "2019-02-15"
 logo: "brillante-logo.webp"
-tech: "GatsbyJS, Netlify CMS"
+tech: ["React", "GatsbyJS", "Netlify CMS", "CSS Modules"]
 darkColor: "#2c633c"
 lightColor: "#82bf90"
 ---

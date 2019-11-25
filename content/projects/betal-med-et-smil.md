@@ -7,7 +7,7 @@ description: "Gjennom et inhouse-oppdrag fra Kantega, bygget jeg i et team på t
 started: "2019-05-01"
 finished: "2019-09-1"
 logo: "kantega-logo.png"
-tech: "React, TypeScript, Firebase"
+tech: ["React", "TypeScript", "Firebase", "Styled Components"]
 darkColor: "#034961"
 lightColor: "#166F89"
 ---
