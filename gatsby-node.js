@@ -8,6 +8,7 @@
 const locale = require("date-fns/locale")
 const formatDistanceStrict = require("date-fns/formatDistanceStrict")
 const path = require(`path`)
+const produce = require("immer")
 var parse = require("date-fns/parse")
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
@@ -38,6 +39,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
+
   posts.forEach(({ node }, index) => {
     const startedDate = parse(
       node.frontmatter.started,
@@ -49,6 +51,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       "yyyy-MM-dd",
       new Date()
     )
+
     createPage({
       path: `portfolio/${node.frontmatter.path}`,
       component: blogPostTemplate,

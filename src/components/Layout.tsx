@@ -16,6 +16,7 @@ interface ILayout {
   radial?: boolean
   radialColors?: { dark: string; light: string }
   shadow?: boolean
+  border?: boolean
 }
 
 export default function Layout({
@@ -26,6 +27,7 @@ export default function Layout({
   radial,
   radialColors,
   shadow = false,
+  border = true,
 }: ILayout) {
   return (
     <Providers>
@@ -34,6 +36,7 @@ export default function Layout({
         customBorderSize={customBorderSize}
         radial={radial}
         radialColors={radialColors}
+        border={border}
       >
         {backgroundImg && (
           <Img
@@ -108,6 +111,7 @@ interface ILayoutContainer {
   customBorderSize?: number
   radial?: boolean
   radialColors?: { dark: string; light: string }
+  border?: boolean
 }
 
 const LayoutContainer = styled.div<ILayoutContainer>`
@@ -133,7 +137,7 @@ const LayoutContainer = styled.div<ILayoutContainer>`
       );`
     }
   }};
-  border: 20px solid #65cdbd;
+  border: ${({ border }) => (border ? `20px solid #65cdbd` : `none`)};
   ${({ customBorder = borderImg, customBorderSize = 20 }) =>
     `border-image: url(${customBorder}) ${customBorderSize};`}
   color: white;

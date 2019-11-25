@@ -1,7 +1,7 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React, { useEffect } from "react"
+import { graphql, navigate } from "gatsby"
 import Layout from "../components/Layout"
-import Img, { FluidObject, FixedObject } from "gatsby-image"
+import Img, { FixedObject } from "gatsby-image"
 
 import ClickSound from "../components/ClickSound"
 
@@ -16,6 +16,7 @@ import {
   TechList,
 } from "../elements/Portfolio"
 import SEO from "../components/SEO"
+import { useImmer } from "use-immer"
 const blueBorder = require("../images/border-blue.png")
 
 interface IPortfolioTemplate {
@@ -60,7 +61,26 @@ export default function PortfolioTemplate({
     started,
   } = data.markdownRemark.frontmatter
   const { duration, next, prev } = pageContext
-  console.log("tech", tech)
+  const [listenToKeyPress, setKeyListenStatus] = useImmer(true)
+  const navLink = (path: string) => `/portfolio/${path}`
+  const handleKeyPress = (e: KeyboardEvent) => {
+    if (listenToKeyPress) {
+      if (e.key === "ArrowLeft") {
+        navigate(navLink(prev))
+        setKeyListenStatus(() => false)
+      }
+      if (e.key === "ArrowRight") {
+        navigate(navLink(next))
+        setKeyListenStatus(() => false)
+      }
+    }
+  }
+  useEffect(() => {
+    window.addEventListener("keyup", handleKeyPress)
+    return () => {
+      window.removeEventListener("keyup", handleKeyPress)
+    }
+  })
   return (
     <Layout
       customBorder={blueBorder && blueBorder}
@@ -70,11 +90,11 @@ export default function PortfolioTemplate({
       <SEO title={title} />
       <PortfolioContainer>
         <PortfolioNav>
-          <PortfolioNavLink to="/" state={{ muteSound: false }}>
+          <PortfolioNavLink to="/" state={{ muteSound: true }}>
             Ok
           </PortfolioNavLink>
-          <PortfolioNavLink to={`/portfolio/${prev}`}>{"<<"}</PortfolioNavLink>
-          <PortfolioNavLink to={`/portfolio/${next}`}>{">>"}</PortfolioNavLink>
+          <PortfolioNavLink to={navLink(prev)}>{"<<"}</PortfolioNavLink>
+          <PortfolioNavLink to={navLink(next)}>{">>"}</PortfolioNavLink>
         </PortfolioNav>
         <PortFolioIcon
           href={url}
@@ -101,15 +121,15 @@ export default function PortfolioTemplate({
         <PortFolioDescription>
           {description}
           <TechList>
-            <span className="header">Teknologier: </span>
-            <div className="list">
+            <span className="header">Nøkkelteknologi: </span>
+            <span className="list">
               {tech
                 .sort()
                 .map(
                   (technology, index, arr) =>
                     `${technology}${arr.length - 1 !== index ? ", " : ""}`
                 )}
-            </div>
+            </span>
           </TechList>
         </PortFolioDescription>
       </PortfolioContainer>
