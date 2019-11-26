@@ -8,6 +8,7 @@ import { mq } from "../elements/MediaQuery"
 const rankImg = require("../images/rookie.png")
 
 function AboutPage() {
+  const maxExperienceLength = 10
   return (
     <Layout border={false}>
       <SEO title="Om meg" />
@@ -40,46 +41,19 @@ function AboutPage() {
           </ProjectStats>
           <Links>{/* <AboutBtnLink to="/">Biografi</AboutBtnLink> */}</Links>
         </Menu>
-        <Main>
+        <SkillChart>
           <div style={{ padding: "0.5rem" }}>Nøkkelerfaringer</div>
-          <GraphEntry>
-            <div className="name">JAVASCRIPT / TYPESCRIPT</div>
-            <div>5</div>
-            <div>Value</div>
-          </GraphEntry>
-          <GraphEntry>
-            <div className="name">ELM</div> <div>5</div>
-            <div>Value</div>
-          </GraphEntry>
-          <GraphEntry>
-            <div className="name">PHP</div> <div>5</div>
-            <div>Value</div>
-          </GraphEntry>
-          <GraphEntry>
-            <div className="name">NODE</div> <div>5</div>
-            <div>Value</div>
-          </GraphEntry>
-          <GraphEntry>
-            <div className="name">CSS</div> <div>5</div>
-            <div>Value</div>
-          </GraphEntry>
-          <GraphEntry>
-            <div className="name">GRAPHQL</div> <div>5</div>
-            <div>Value</div>
-          </GraphEntry>
-          <GraphEntry>
-            <div className="name">GATSBY</div> <div>5</div>
-            <div>Value</div>
-          </GraphEntry>
-          <GraphEntry>
-            <div className="name">FIREBASE</div> <div>5</div>
-            <div>Value</div>
-          </GraphEntry>
-          <GraphEntry>
-            <div className="name">REACT</div> <div>5</div>
-            <div>Value</div>
-          </GraphEntry>
-        </Main>
+          {mockExpData.map((entry, index) => (
+            <Bar
+              key={index}
+              name={entry.name}
+              value={entry.value}
+              background={barColors[index].background}
+              border={barColors[index].border}
+              max={maxExperienceLength}
+            />
+          ))}
+        </SkillChart>
       </AboutContent>
 
       <ClickSound />
@@ -212,13 +186,30 @@ const Links = styled.div`
 `
 
 // Main
-const Main = styled.main`
+const SkillChart = styled.main`
   grid-area: main;
 
   display: grid;
   grid-template-rows: repeat(11, 1fr);
 `
-const GraphEntry = styled.div`
+
+function Bar({ name, value, background, border, max }) {
+  return (
+    <GraphEntry max={max}>
+      <div className="name">{name}</div>
+      <div className="value">{value}</div>
+      <div className="bar">
+        <Line count={value} background={background} border={border} />
+      </div>
+    </GraphEntry>
+  )
+}
+
+interface IGraphEntry {
+  max: number
+}
+
+const GraphEntry = styled.div<IGraphEntry>`
   display: grid;
   grid-template-columns: 5fr 100px 7fr;
   background: linear-gradient(
@@ -228,7 +219,7 @@ const GraphEntry = styled.div`
     rgba(0, 12, 32, 1) 100%
   );
   border: 4px solid #d8d9e8;
-  padding: 0.5rem;
+
   border-bottom: 0;
 
   &:last-of-type {
@@ -236,8 +227,77 @@ const GraphEntry = styled.div`
   }
 
   .name {
+    padding: 0.5rem;
     color: #edc8c1;
     text-shadow: 2px 2px 0px #752850, -2px -2px 0px #752850,
       -2px 2px 0px #752850, 2px -2px 0px #752850;
+    text-transform: uppercase;
+  }
+
+  .value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 4px solid #d8d9e8;
+    border-right: 4px solid #d8d9e8;
+    background-color: #402d48;
+  }
+
+  .bar {
+    display: grid;
+    grid-template-columns: repeat(${({ max }) => max}, 1fr);
+    align-items: center;
   }
 `
+
+interface ILine {
+  count: number
+  background: string
+  borderColor: string
+}
+
+const Line = styled.div<ILine>`
+  ${({ count, background = "#305ca0", border = "#a8cff0" }) =>
+    `background-color: ${background};
+    grid-column-start: 1;
+    grid-column-end: ${count};
+    height: 50%;
+    border: 4px ${border} solid;
+    border-left: 0;`}
+`
+
+interface BarColor {
+  border: string
+  background: string
+}
+
+const barColors: BarColor[] = [
+  { border: "#d0e35f", background: "#386f14" },
+  { border: "#fcfc78", background: "#a07020" },
+  { border: "#fc7878", background: "#9c2121" },
+  { border: "#ececf8", background: "#787094" },
+  { border: "#fcd002", background: "#9c3800" },
+  { border: "#a8cff0", background: "#305ca0" },
+  { border: "#b9a059", background: "#5c2c11" },
+  { border: "#ececf8", background: "#787094" },
+  { border: "#f8f8f8", background: "#886f68" },
+  { border: "#f8dcd4", background: "#985868" },
+]
+
+interface ExpData {
+  name: string
+  value: number
+}
+
+const mockExpData: ExpData[] = [
+  { name: "JavaScript / TypeScript", value: 10 },
+  { name: "Firebase", value: 8 },
+  { name: "CSS", value: 6 },
+  { name: "React", value: 5 },
+  { name: "Html", value: 5 },
+  { name: "Laravel", value: 5 },
+  { name: "GraphQL", value: 4 },
+  { name: "PHP", value: 4 },
+  { name: "Gatasby", value: 3 },
+  { name: "Elm", value: 2 },
+]
