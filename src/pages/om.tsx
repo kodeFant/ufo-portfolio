@@ -63,7 +63,12 @@ function AboutPage() {
 
 export default AboutPage
 
-function AboutEntry({ name, value }) {
+interface IAboutEntry {
+  name: string
+  value: string
+}
+
+function AboutEntry({ name, value }: IAboutEntry) {
   return (
     <div style={{ margin: 0 }}>
       <AboutEntryName>{name} </AboutEntryName>
@@ -193,7 +198,15 @@ const SkillChart = styled.main`
   grid-template-rows: repeat(11, 1fr);
 `
 
-function Bar({ name, value, background, border, max }) {
+interface IBar {
+  name: string
+  value: number
+  background: string
+  border: string
+  max: number
+}
+
+function Bar({ name, value, background, border, max }: IBar) {
   return (
     <GraphEntry max={max}>
       <div className="name">{name}</div>
@@ -215,7 +228,8 @@ const GraphEntry = styled.div<IGraphEntry>`
   background: linear-gradient(
     90deg,
     rgba(0, 12, 32, 1) 0%,
-    rgba(64, 36, 104, 1) 50%,
+    rgba(64, 36, 104, 1) 33%,
+    rgba(64, 36, 104, 1) 66%,
     rgba(0, 12, 32, 1) 100%
   );
   border: 4px solid #d8d9e8;
@@ -253,7 +267,7 @@ const GraphEntry = styled.div<IGraphEntry>`
 interface ILine {
   count: number
   background: string
-  borderColor: string
+  border: string
 }
 
 const Line = styled.div<ILine>`
@@ -298,6 +312,6 @@ const mockExpData: ExpData[] = [
   { name: "Laravel", value: 5 },
   { name: "GraphQL", value: 4 },
   { name: "PHP", value: 4 },
-  { name: "Gatasby", value: 3 },
+  { name: "Gatsby", value: 3 },
   { name: "Elm", value: 2 },
 ]
