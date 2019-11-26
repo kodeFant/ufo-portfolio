@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
-import { mq, fp } from "../elements/MediaQuery"
+import { fp } from "../elements/MediaQuery"
 
 interface IDottedField {
   entry: string
