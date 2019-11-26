@@ -110,7 +110,12 @@ const Header = styled.header`
 const Logo = styled.div`
   grid-area: logo;
   background-color: #e3d85b;
-  border: solid 1rem #c8c8dc;
+  border: solid 0.5rem #c8c8dc;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `
 
 const Name = styled.div`
@@ -122,7 +127,7 @@ const Name = styled.div`
     rgba(64, 36, 104, 1) 50%,
     rgba(0, 12, 32, 1) 100%
   );
-  border: solid 1rem #c8c8dc;
+  border: solid 0.5rem #c8c8dc;
   border-left: 0;
   display: flex;
   justify-content: flex-start;
