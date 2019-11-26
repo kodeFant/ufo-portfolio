@@ -37,7 +37,7 @@ export const query = graphql`
 
 function IndexPage({ location, data }: IndexPage) {
   const grow = useSpring({
-    config: { duration: 600 },
+    config: { duration: 400 },
     to: { height: "100%", width: "100%" },
     from: { height: "10%", width: "10%" },
   })
