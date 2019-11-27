@@ -7,7 +7,7 @@ description: "En digital salgsplattform for privatpersoner. Jeg utviklet fronten
 started: "2019-02-01"
 finished: "2019-09-01"
 logo: "tipzer-logo.png"
-tech: ["React", "Laravel", "GraphQL", "Styled Components", "PHP"]
+tech: ["React", "Laravel", "GraphQL", "Styled Components", "PHP", "JavaScript", "TypeScript"]
 darkColor: "rgb(246, 246, 246)"
 lightColor: "rgb(255, 255, 255)"
 ---

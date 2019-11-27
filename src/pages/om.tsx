@@ -5,10 +5,37 @@ import { ButtonLink } from "../elements/Button"
 import ClickSound from "../components/ClickSound"
 import SEO from "../components/SEO"
 import { mq } from "../elements/MediaQuery"
+import { graphql } from "gatsby"
 const rankImg = require("../images/rookie.png")
 
-function AboutPage() {
-  const maxExperienceLength = 10
+interface IAboutPage {
+  data: {
+    allMarkdownRemark: {
+      edges: PageNode[]
+    }
+  }
+}
+
+type TechObject = {
+  [key: string]: number
+}
+
+function AboutPage({ data }: IAboutPage) {
+  const { edges } = data.allMarkdownRemark
+  const techData = edges.map(edge => edge.node.frontmatter.tech)
+  const techObject = techData.reduce<TechObject>((acc, cur) => {
+    let data = { ...acc }
+    cur.forEach(tech => {
+      if (data[tech] >= 1) {
+        data[tech] = data[tech] + 1
+      } else if (!data[tech]) {
+        data[tech] = 1
+      }
+    })
+    return data
+  }, {})
+  const projects = edges.length
+  const maxExperienceLength = Math.max(...Object.values(techObject))
   return (
     <Layout border={false}>
       <SEO title="Om meg" />
@@ -35,25 +62,40 @@ function AboutPage() {
             </NavInfo>
           </Nav>
           <ProjectStats>
-            <AboutEntry name="Prosjekter" value="5" />
+            <AboutEntry name="Prosjekter" value={projects.toString()} />
             <AboutEntry name="Oppdragsgivere" value="4" />
             <AboutEntry name="Erfaring" value="1 år" />
           </ProjectStats>
           <Links>{/* <AboutBtnLink to="/">Biografi</AboutBtnLink> */}</Links>
         </Menu>
-        <SkillChart>
-          <div style={{ padding: "0.5rem" }}>Nøkkelerfaringer</div>
-          {mockExpData.map((entry, index) => (
-            <Bar
-              key={index}
-              name={entry.name}
-              value={entry.value}
-              background={barColors[index].background}
-              border={barColors[index].border}
-              max={maxExperienceLength}
-            />
-          ))}
-        </SkillChart>
+        <Main>
+          <div style={{ padding: "0.5rem" }}>
+            Mest brukte teknologier (antall ganger benyttet)
+          </div>
+          <SkillChart>
+            {Object.keys(techObject)
+              .sort((a, b) => {
+                const aValue = techObject[a]
+                const bValue = techObject[b]
+                return bValue - aValue
+              })
+              .map((entry, index) => {
+                if (index <= 9) {
+                  return (
+                    <Bar
+                      key={index}
+                      name={entry}
+                      value={techObject[entry]}
+                      background={barColors[index].background}
+                      border={barColors[index].border}
+                      max={maxExperienceLength}
+                      isLast={index === 9}
+                    />
+                  )
+                }
+              })}
+          </SkillChart>
+        </Main>
       </AboutContent>
 
       <ClickSound />
@@ -146,6 +188,7 @@ const Name = styled.div`
 const Menu = styled.div`
   grid-area: menu;
   display: grid;
+
   grid-template: "nav projects links" 1fr / 3fr 3fr 1fr;
 `
 
@@ -196,11 +239,15 @@ const Links = styled.div`
 `
 
 // Main
-const SkillChart = styled.main`
+const Main = styled.main`
   grid-area: main;
+`
 
+const SkillChart = styled.div`
   display: grid;
-  grid-template-rows: repeat(11, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  border-top: 4px solid #d8d9e8;
+  border-bottom: 4px solid #d8d9e8;
 `
 
 interface IBar {
@@ -209,11 +256,12 @@ interface IBar {
   background: string
   border: string
   max: number
+  isLast: boolean
 }
 
-function Bar({ name, value, background, border, max }: IBar) {
+function Bar({ name, value, background, border, max, isLast }: IBar) {
   return (
-    <GraphEntry max={max}>
+    <GraphEntry max={max} isLast={isLast}>
       <div className="name">{name}</div>
       <div className="value">{value}</div>
       <div className="bar">
@@ -225,6 +273,7 @@ function Bar({ name, value, background, border, max }: IBar) {
 
 interface IGraphEntry {
   max: number
+  isLast: boolean
 }
 
 const GraphEntry = styled.div<IGraphEntry>`
@@ -237,13 +286,6 @@ const GraphEntry = styled.div<IGraphEntry>`
     rgba(64, 36, 104, 1) 66%,
     rgba(0, 12, 32, 1) 100%
   );
-  border: 4px solid #d8d9e8;
-
-  border-bottom: 0;
-
-  &:last-of-type {
-    border-bottom: 4px solid #d8d9e8;
-  }
 
   .name {
     padding: 0.5rem;
@@ -251,6 +293,9 @@ const GraphEntry = styled.div<IGraphEntry>`
     text-shadow: 2px 2px 0px #752850, -2px -2px 0px #752850,
       -2px 2px 0px #752850, 2px -2px 0px #752850;
     text-transform: uppercase;
+    border: 4px solid #d8d9e8;
+    border-top: 0;
+    border-bottom: ${({ isLast }) => (isLast ? "0" : "4px solid #d8d9e8")};
   }
 
   .value {
@@ -260,12 +305,16 @@ const GraphEntry = styled.div<IGraphEntry>`
     border-left: 4px solid #d8d9e8;
     border-right: 4px solid #d8d9e8;
     background-color: #402d48;
+    border: 4px solid #d8d9e8;
+    border-top: 0;
+    border-left: 0;
   }
 
   .bar {
     display: grid;
     grid-template-columns: repeat(${({ max }) => max}, 1fr);
     align-items: center;
+    border-right: 4px solid #d8d9e8;
   }
 `
 
@@ -320,3 +369,25 @@ const mockExpData: ExpData[] = [
   { name: "Gatsby", value: 3 },
   { name: "Elm", value: 2 },
 ]
+
+export const pageQuery = graphql`
+  query TechQuery {
+    allMarkdownRemark {
+      edges {
+        node {
+          frontmatter {
+            tech
+          }
+        }
+      }
+    }
+  }
+`
+
+interface PageNode {
+  node: {
+    frontmatter: {
+      tech: string[]
+    }
+  }
+}
