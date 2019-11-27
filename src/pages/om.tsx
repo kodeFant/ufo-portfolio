@@ -308,6 +308,7 @@ const GraphEntry = styled.div<IGraphEntry>`
     border: 4px solid #d8d9e8;
     border-top: 0;
     border-left: 0;
+    border-bottom: ${({ isLast }) => (isLast ? "0" : "4px solid #d8d9e8")};
   }
 
   .bar {
