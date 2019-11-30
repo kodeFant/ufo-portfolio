@@ -1,15 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Layout from "../components/Layout"
 import styled from "@emotion/styled"
 import { ButtonLink } from "../elements/Button"
 import ClickSound from "../components/ClickSound"
 import SEO from "../components/SEO"
 import { mq } from "../elements/MediaQuery"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, navigate } from "gatsby"
+import AboutEntry from "../components/AboutEntry"
+import { useImmer } from "use-immer"
 const rankImg = require("../images/rookie.png")
 
 interface IAboutPage {
   children: React.ReactNode
+  nextLink: string
+  prevLink: string
 }
 
 interface TechQueryData {
@@ -18,19 +22,37 @@ interface TechQueryData {
   }
 }
 
-type TechObject = {
-  [key: string]: number
-}
-
-export default function AboutMeTemplate({ children }: IAboutPage) {
+export default function AboutMeTemplate({
+  children,
+  nextLink,
+  prevLink,
+}: IAboutPage) {
   const data = useStaticQuery<TechQueryData>(AboutMeTemplateQuery)
+  const [listenToKeyPress, setKeyListenStatus] = useImmer(true)
   const { edges } = data.allMarkdownRemark
   const projects = edges.length
+  const handleKeyPress = (e: KeyboardEvent) => {
+    if (listenToKeyPress) {
+      if (e.key === "ArrowLeft") {
+        navigate(prevLink)
+        setKeyListenStatus(() => false)
+      }
+      if (e.key === "ArrowRight") {
+        navigate(nextLink)
+        setKeyListenStatus(() => false)
+      }
+    }
+  }
+  useEffect(() => {
+    window.addEventListener("keyup", handleKeyPress)
+    return () => {
+      window.removeEventListener("keyup", handleKeyPress)
+    }
+  })
 
   return (
     <Layout border={false}>
       <SEO title="Om meg" />
-
       <AboutContent>
         <Header>
           <Logo>
@@ -41,11 +63,11 @@ export default function AboutMeTemplate({ children }: IAboutPage) {
         <Menu>
           <Nav>
             <NavButtons>
-              <AboutBtnLink to="/">{"<<"}</AboutBtnLink>
+              <AboutBtnLink to={prevLink}>{"<<"}</AboutBtnLink>
               <AboutBtnLink state={{ muteSound: true }} to="/">
                 Ok
               </AboutBtnLink>
-              <AboutBtnLink to="/">{">>"}</AboutBtnLink>
+              <AboutBtnLink to={nextLink}>{">>"}</AboutBtnLink>
             </NavButtons>
             <NavInfo>
               <AboutEntry name="Team" value="Kantega" />
@@ -66,27 +88,6 @@ export default function AboutMeTemplate({ children }: IAboutPage) {
     </Layout>
   )
 }
-
-interface IAboutEntry {
-  name: string
-  value: string
-}
-
-function AboutEntry({ name, value }: IAboutEntry) {
-  return (
-    <div style={{ margin: 0 }}>
-      <AboutEntryName>{name} </AboutEntryName>
-      {value}
-    </div>
-  )
-}
-
-const AboutEntryName = styled.span`
-  text-transform: uppercase;
-  color: #84b0dc;
-  text-shadow: 2px 2px 0px #0c2c64, -2px -2px 0px #0c2c64, -2px 2px 0px #0c2c64,
-    2px -2px 0px #0c2c64;
-`
 
 const AboutContent = styled.div`
   display: grid;
@@ -199,121 +200,6 @@ const Links = styled.div`
   justify-content: flex-end;
   padding: 0.5rem 0;
 `
-
-// Main
-const Main = styled.main`
-  grid-area: main;
-`
-
-const SkillChart = styled.div`
-  display: grid;
-  grid-template-rows: repeat(10, 1fr);
-  border-top: 4px solid #d8d9e8;
-  border-bottom: 4px solid #d8d9e8;
-`
-
-interface IBar {
-  name: string
-  value: number
-  background: string
-  border: string
-  max: number
-  isLast: boolean
-}
-
-function Bar({ name, value, background, border, max, isLast }: IBar) {
-  return (
-    <GraphEntry max={max} isLast={isLast}>
-      <div className="name">{name}</div>
-      <div className="value">{value}</div>
-      <div className="bar">
-        <Line count={value} background={background} border={border} />
-      </div>
-    </GraphEntry>
-  )
-}
-
-interface IGraphEntry {
-  max: number
-  isLast: boolean
-}
-
-const GraphEntry = styled.div<IGraphEntry>`
-  display: grid;
-  grid-template-columns: 5fr 100px 7fr;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 12, 32, 1) 0%,
-    rgba(64, 36, 104, 1) 33%,
-    rgba(64, 36, 104, 1) 66%,
-    rgba(0, 12, 32, 1) 100%
-  );
-
-  .name {
-    padding: 0.5rem;
-    color: #edc8c1;
-    text-shadow: 2px 2px 0px #752850, -2px -2px 0px #752850,
-      -2px 2px 0px #752850, 2px -2px 0px #752850;
-    text-transform: uppercase;
-    border: 4px solid #d8d9e8;
-    border-top: 0;
-    border-bottom: ${({ isLast }) => (isLast ? "0" : "4px solid #d8d9e8")};
-  }
-
-  .value {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-left: 4px solid #d8d9e8;
-    border-right: 4px solid #d8d9e8;
-    background-color: #402d48;
-    border: 4px solid #d8d9e8;
-    border-top: 0;
-    border-left: 0;
-    border-bottom: ${({ isLast }) => (isLast ? "0" : "4px solid #d8d9e8")};
-  }
-
-  .bar {
-    display: grid;
-    grid-template-columns: repeat(${({ max }) => max}, 1fr);
-    align-items: center;
-    border-right: 4px solid #d8d9e8;
-  }
-`
-
-interface ILine {
-  count: number
-  background: string
-  border: string
-}
-
-const Line = styled.div<ILine>`
-  ${({ count, background = "#305ca0", border = "#a8cff0" }) =>
-    `background-color: ${background};
-    grid-column-start: 1;
-    grid-column-end: ${count};
-    height: 50%;
-    border: 4px ${border} solid;
-    border-left: 0;`}
-`
-
-interface BarColor {
-  border: string
-  background: string
-}
-
-const barColors: BarColor[] = [
-  { border: "#d0e35f", background: "#386f14" },
-  { border: "#fcfc78", background: "#a07020" },
-  { border: "#fc7878", background: "#9c2121" },
-  { border: "#ececf8", background: "#787094" },
-  { border: "#fcd002", background: "#9c3800" },
-  { border: "#a8cff0", background: "#305ca0" },
-  { border: "#b9a059", background: "#5c2c11" },
-  { border: "#ececf8", background: "#787094" },
-  { border: "#f8f8f8", background: "#886f68" },
-  { border: "#f8dcd4", background: "#985868" },
-]
 
 export const AboutMeTemplateQuery = graphql`
   query TechDataQuery {

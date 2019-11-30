@@ -16,6 +16,8 @@ type TechObject = {
 }
 
 function AboutPage({ data }: IAboutPage) {
+  const nextLink = "/om/biografi"
+  const prevLink = "/om/biografi"
   const { edges } = data.allMarkdownRemark
   const techData = edges.map(edge => edge.node.frontmatter.tech)
   const techObject = techData.reduce<TechObject>((acc, cur) => {
@@ -29,10 +31,9 @@ function AboutPage({ data }: IAboutPage) {
     })
     return data
   }, {})
-  const projects = edges.length
   const maxExperienceLength = Math.max(...Object.values(techObject))
   return (
-    <AboutMeTemplate>
+    <AboutMeTemplate nextLink={nextLink} prevLink={prevLink}>
       <Main>
         <div style={{ padding: "0.5rem" }}>
           Mest brukte teknologier (antall ganger benyttet)
