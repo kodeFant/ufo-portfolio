@@ -1,12 +1,7 @@
 import React from "react"
-import Layout from "../components/Layout"
 import styled from "@emotion/styled"
-import { ButtonLink } from "../elements/Button"
-import ClickSound from "../components/ClickSound"
-import SEO from "../components/SEO"
-import { mq } from "../elements/MediaQuery"
 import { graphql } from "gatsby"
-const rankImg = require("../images/rookie.png")
+import AboutMeTemplate from "../templates/aboutMeTemplate"
 
 interface IAboutPage {
   data: {
@@ -37,206 +32,40 @@ function AboutPage({ data }: IAboutPage) {
   const projects = edges.length
   const maxExperienceLength = Math.max(...Object.values(techObject))
   return (
-    <Layout border={false}>
-      <SEO title="Om meg" />
-
-      <AboutContent>
-        <Header>
-          <Logo>
-            <img src={rankImg} />
-          </Logo>
-          <Name>Lars Lillo Ulvestad</Name>
-        </Header>
-        <Menu>
-          <Nav>
-            <NavButtons>
-              <AboutBtnLink to="/">{"<<"}</AboutBtnLink>
-              <AboutBtnLink state={{ muteSound: true }} to="/">
-                Ok
-              </AboutBtnLink>
-              <AboutBtnLink to="/">{">>"}</AboutBtnLink>
-            </NavButtons>
-            <NavInfo>
-              <AboutEntry name="Team" value="Kantega" />
-              <AboutEntry name="Rang" value="Frontendutvikler" />
-            </NavInfo>
-          </Nav>
-          <ProjectStats>
-            <AboutEntry name="Prosjekter" value={projects.toString()} />
-            <AboutEntry name="Oppdragsgivere" value="4" />
-            <AboutEntry name="Erfaring" value="1 år" />
-          </ProjectStats>
-          <Links>{/* <AboutBtnLink to="/">Biografi</AboutBtnLink> */}</Links>
-        </Menu>
-        <Main>
-          <div style={{ padding: "0.5rem" }}>
-            Mest brukte teknologier (antall ganger benyttet)
-          </div>
-          <SkillChart>
-            {Object.keys(techObject)
-              .sort((a, b) => {
-                const aValue = techObject[a]
-                const bValue = techObject[b]
-                return bValue - aValue
-              })
-              .map((entry, index) => {
-                if (index <= 9) {
-                  return (
-                    <Bar
-                      key={index}
-                      name={entry}
-                      value={techObject[entry]}
-                      background={barColors[index].background}
-                      border={barColors[index].border}
-                      max={maxExperienceLength}
-                      isLast={index === 9}
-                    />
-                  )
-                }
-              })}
-          </SkillChart>
-        </Main>
-      </AboutContent>
-
-      <ClickSound />
-    </Layout>
+    <AboutMeTemplate>
+      <Main>
+        <div style={{ padding: "0.5rem" }}>
+          Mest brukte teknologier (antall ganger benyttet)
+        </div>
+        <SkillChart>
+          {Object.keys(techObject)
+            .sort((a, b) => {
+              const aValue = techObject[a]
+              const bValue = techObject[b]
+              return bValue - aValue
+            })
+            .map((entry, index) => {
+              if (index <= 9) {
+                return (
+                  <Bar
+                    key={index}
+                    name={entry}
+                    value={techObject[entry]}
+                    background={barColors[index].background}
+                    border={barColors[index].border}
+                    max={maxExperienceLength}
+                    isLast={index === 9}
+                  />
+                )
+              }
+            })}
+        </SkillChart>
+      </Main>
+    </AboutMeTemplate>
   )
 }
 
 export default AboutPage
-
-interface IAboutEntry {
-  name: string
-  value: string
-}
-
-function AboutEntry({ name, value }: IAboutEntry) {
-  return (
-    <div style={{ margin: 0 }}>
-      <AboutEntryName>{name} </AboutEntryName>
-      {value}
-    </div>
-  )
-}
-
-const AboutEntryName = styled.span`
-  text-transform: uppercase;
-  color: #84b0dc;
-  text-shadow: 2px 2px 0px #0c2c64, -2px -2px 0px #0c2c64, -2px 2px 0px #0c2c64,
-    2px -2px 0px #0c2c64;
-`
-
-const AboutContent = styled.div`
-  display: grid;
-  width: 100%;
-  height: 100%;
-  text-align: left;
-  grid-template:
-    "header" 130px
-    "menu" 2fr
-    "main" 8fr;
-  text-shadow: 2px 2px 0px #585858, -2px -2px 0px #585858, -2px 2px 0px #585858,
-    2px -2px 0px #585858;
-`
-
-// Header
-
-const Header = styled.header`
-  grid-area: header;
-  display: grid;
-  grid-template: "logo name" 130px / 145px auto;
-  background-color: purple;
-  grid-gap: -1rem;
-`
-
-const Logo = styled.div`
-  grid-area: logo;
-  background-color: #e3d85b;
-  border: solid 0.5rem #c8c8dc;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`
-
-const Name = styled.div`
-  grid-area: name;
-  background: rgb(0, 12, 32);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 12, 32, 1) 0%,
-    rgba(64, 36, 104, 1) 50%,
-    rgba(0, 12, 32, 1) 100%
-  );
-  border: solid 0.5rem #c8c8dc;
-  border-left: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 3rem;
-  font-size: 5rem;
-  color: #84afdc;
-  overflow: hidden;
-  white-space: nowrap;
-  text-shadow: 4px 4px 0px #00103c, -4px -4px 0px #00103c, -4px 4px 0px #00103c,
-    4px -4px 0px #00103c;
-`
-
-// Menu
-
-const Menu = styled.div`
-  grid-area: menu;
-  display: grid;
-
-  grid-template: "nav projects links" 1fr / 3fr 3fr 1fr;
-`
-
-const Nav = styled.nav`
-  grid-area: nav;
-`
-
-const NavButtons = styled.div`
-  display: inline-grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1rem;
-  align-items: start;
-  justify-items: start;
-`
-
-const AboutBtnLink = styled(ButtonLink)`
-  background-color: #643c87;
-  color: #b494e8;
-  outline: outset 2px #b595e9;
-  border: outset 2px #b595e9;
-  padding: 0 1rem;
-  text-transform: uppercase;
-
-  :active {
-    outline: inset 2px #b595e9;
-    border: inset 2px #b595e9;
-  }
-
-  ${mq[0]} {
-    padding: 0 1.5rem;
-  }
-`
-
-const NavInfo = styled.div`
-  padding: 0.5rem 0;
-`
-
-const ProjectStats = styled.div`
-  grid-area: projects;
-`
-
-const Links = styled.div`
-  grid-area: links;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 0.5rem 0;
-`
 
 // Main
 const Main = styled.main`
@@ -351,24 +180,6 @@ const barColors: BarColor[] = [
   { border: "#ececf8", background: "#787094" },
   { border: "#f8f8f8", background: "#886f68" },
   { border: "#f8dcd4", background: "#985868" },
-]
-
-interface ExpData {
-  name: string
-  value: number
-}
-
-const mockExpData: ExpData[] = [
-  { name: "JavaScript / TypeScript", value: 10 },
-  { name: "Firebase", value: 8 },
-  { name: "CSS", value: 6 },
-  { name: "React", value: 5 },
-  { name: "Html", value: 5 },
-  { name: "Laravel", value: 5 },
-  { name: "GraphQL", value: 4 },
-  { name: "PHP", value: 4 },
-  { name: "Gatsby", value: 3 },
-  { name: "Elm", value: 2 },
 ]
 
 export const pageQuery = graphql`

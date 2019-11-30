@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint-react"],
+  "extends": ["tslint-react", "tslint-config-prettier"],
   "rules": {
     "prettier": true,
     "jsx-no-multiline-js": false,
