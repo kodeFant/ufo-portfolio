@@ -15,3 +15,10 @@ export const Heading2 = styled.h2`
   margin: 0;
   font-weight: normal;
 `
+export const AboutHeader = styled.h2`
+  text-transform: uppercase;
+  color: #84b0dc;
+  text-shadow: 2px 2px 0px #0c2c64, -2px -2px 0px #0c2c64, -2px 2px 0px #0c2c64,
+    2px -2px 0px #0c2c64;
+  font-size: 2rem;
+`

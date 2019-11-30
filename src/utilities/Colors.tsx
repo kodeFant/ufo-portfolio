@@ -5,3 +5,4 @@ export const darkGreen = `#3ca490`
 export const mainGreen = `#40b06d`
 export const lighterGreen = `#64ccbc`
 export const lightestGreen = `#78ccbf`
+export const babyBlue = `#84b0dc`

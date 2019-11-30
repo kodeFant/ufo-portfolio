@@ -2,6 +2,7 @@ import React from "react"
 import styled from "@emotion/styled"
 import { graphql } from "gatsby"
 import AboutMeTemplate from "../templates/aboutMeTemplate"
+import { mq } from "../elements/MediaQuery"
 
 interface IAboutPage {
   data: {
@@ -108,7 +109,7 @@ interface IGraphEntry {
 
 const GraphEntry = styled.div<IGraphEntry>`
   display: grid;
-  grid-template-columns: 5fr 100px 7fr;
+  grid-template-columns: 5fr 2fr 5fr;
   background: linear-gradient(
     90deg,
     rgba(0, 12, 32, 1) 0%,
@@ -116,6 +117,10 @@ const GraphEntry = styled.div<IGraphEntry>`
     rgba(64, 36, 104, 1) 66%,
     rgba(0, 12, 32, 1) 100%
   );
+
+  ${mq[1]} {
+    grid-template-columns: 5fr 100px 7fr;
+  }
 
   .name {
     padding: 0.5rem;
@@ -125,7 +130,18 @@ const GraphEntry = styled.div<IGraphEntry>`
     text-transform: uppercase;
     border: 4px solid #d8d9e8;
     border-top: 0;
+    font-size: 1.3rem;
     border-bottom: ${({ isLast }) => (isLast ? "0" : "4px solid #d8d9e8")};
+
+    ${mq[0]} {
+      font-size: 1.5rem;
+      grid-template-columns: 5fr 100px 7fr;
+    }
+
+    ${mq[1]} {
+      font-size: 2rem;
+      grid-template-columns: 5fr 100px 7fr;
+    }
   }
 
   .value {

@@ -90,10 +90,10 @@ export default function PortfolioTemplate({
       <SEO title={title} />
       <PortfolioContainer>
         <PortfolioNav>
+          <PortfolioNavLink to={navLink(prev)}>{"<<"}</PortfolioNavLink>
           <PortfolioNavLink to="/" state={{ muteSound: true }}>
             Ok
           </PortfolioNavLink>
-          <PortfolioNavLink to={navLink(prev)}>{"<<"}</PortfolioNavLink>
           <PortfolioNavLink to={navLink(next)}>{">>"}</PortfolioNavLink>
         </PortfolioNav>
         <PortFolioIcon

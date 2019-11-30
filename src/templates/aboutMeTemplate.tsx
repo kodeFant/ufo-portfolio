@@ -95,7 +95,7 @@ const AboutContent = styled.div`
   height: 100%;
   text-align: left;
   grid-template:
-    "header" 130px
+    "header" auto
     "menu" 2fr
     "main" 8fr;
   text-shadow: 2px 2px 0px #585858, -2px -2px 0px #585858, -2px 2px 0px #585858,
@@ -107,7 +107,11 @@ const AboutContent = styled.div`
 const Header = styled.header`
   grid-area: header;
   display: grid;
-  grid-template: "logo name" 130px / 145px auto;
+  grid-template: "logo name" 100px / 100px auto;
+  ${mq[1]} {
+    grid-template: "logo name" 130px / 145px auto;
+  }
+
   background-color: purple;
   grid-gap: -1rem;
 `
@@ -135,15 +139,33 @@ const Name = styled.div`
   border: solid 0.5rem #c8c8dc;
   border-left: 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  padding: 0 3rem;
-  font-size: 5rem;
+  padding: 0 1rem;
+  font-size: 1.5rem;
   color: #84afdc;
   overflow: hidden;
   white-space: nowrap;
   text-shadow: 4px 4px 0px #00103c, -4px -4px 0px #00103c, -4px 4px 0px #00103c,
     4px -4px 0px #00103c;
+
+  ${mq[0]} {
+    justify-content: flex-start;
+    font-size: 3rem;
+    padding: 0 3rem;
+  }
+
+  ${mq[1]} {
+    justify-content: flex-start;
+    font-size: 4rem;
+    padding: 0 3rem;
+  }
+
+  ${mq[2]} {
+    justify-content: flex-start;
+    font-size: 5rem;
+    padding: 0 3rem;
+  }
 `
 
 // Menu
@@ -151,8 +173,15 @@ const Name = styled.div`
 const Menu = styled.div`
   grid-area: menu;
   display: grid;
+  grid-template:
+    "nav" 1fr
+    "projects" 1fr
+    "links" auto;
+  grid-gap: 1.5rem;
 
-  grid-template: "nav projects links" 1fr / 3fr 3fr 1fr;
+  ${mq[1]} {
+    grid-template: "nav projects links" 1fr / 3fr 3fr 1fr;
+  }
 `
 
 const Nav = styled.nav`

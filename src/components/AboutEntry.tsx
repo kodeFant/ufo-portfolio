@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
+import { AboutHeader } from "../elements/Headers"
 
 interface IAboutEntry {
   name: string
@@ -15,9 +16,7 @@ export default function AboutEntry({ name, value }: IAboutEntry) {
   )
 }
 
-const AboutEntryName = styled.span`
-  text-transform: uppercase;
-  color: #84b0dc;
-  text-shadow: 2px 2px 0px #0c2c64, -2px -2px 0px #0c2c64, -2px 2px 0px #0c2c64,
-    2px -2px 0px #0c2c64;
+const AboutEntryName = styled(AboutHeader)`
+  display: inline;
+  font-size: 2rem;
 `
