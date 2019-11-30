@@ -173,6 +173,7 @@ const Name = styled.div`
 const Menu = styled.div`
   grid-area: menu;
   display: grid;
+  padding: 1rem;
   grid-template:
     "nav" 1fr
     "projects" 1fr

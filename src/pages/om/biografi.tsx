@@ -20,13 +20,13 @@ export default function AboutPage1() {
         </p>
         <AboutHeader>Foretrukne teknologier</AboutHeader>
         <p>
-          Jeg syns det er spennende å lære nye språk og rammeverk, men jeg har
-          noen favoritter.
+          Jeg syns det er spennende å lære nye språk og frontendrammeverk, men
+          jeg har noen favoritter.
         </p>
         <p>
-          Jeg foretrekker og anbefaler webapper kodet i Elm der det er rom for
-          det. Hovedgrunnen er mer pålitelig kode som krever mindre vedlikehold.
-          Det kommer også kunden til gode.
+          Jeg foretrekker det funksjonelle språket Elm der det er rom for det.
+          Hovedgrunnen er mer pålitelig kode som krever mindre vedlikehold. Det
+          kommer også kunden til gode.
         </p>
         <p>
           Når det kommer til blogger og statiske sider syns jeg React/Gatsby med
