@@ -13,6 +13,7 @@ import {
   lightestGreen,
   darkGreen,
   darkerGreen,
+  darkestGreen,
 } from "../utilities/Colors"
 
 export default function FAQPage() {
@@ -24,7 +25,7 @@ export default function FAQPage() {
         <Content>
           <Heading2>Spørsmål og svar</Heading2>
           <QnA
-            question="Tar du imot oppdag?"
+            question="Tar du oppdrag?"
             answer={
               <>
                 <p>
@@ -49,8 +50,8 @@ export default function FAQPage() {
             question="Hva kan du bidra med?"
             answer={
               <p>
-                Jeg spesialiserer meg innen frontend, men har grunnleggende
-                kunnskap om backendutvikling.
+                Jeg spesialiserer meg innen frontend, men er veldig glad i å
+                lære nye teknologier og måter å jobbe på.
               </p>
             }
             selectedQuestion={selectedQuestion}
@@ -58,16 +59,17 @@ export default function FAQPage() {
             id={2}
           />
           <QnA
-            question="Hva slags teknologier har du brukt for å lage denne siden?"
+            question="Hva slags teknologi har du brukt på denne siden?"
             answer={
               <>
                 <p>GatsbyJS, React, TypeScript, CSS (Styled Components).</p>
                 <p>
-                  CMS-en er så enkel en kan få den; en rekke markdown-filer som
-                  jeg dytter ut til Github.
+                  Siden det kun er jeg som endrer i innholdet, bruker jeg ikke
+                  en CMS, men har en rekke markdown-filer som jeg dytter ut til
+                  prosjektet i Github.
                 </p>
                 <p>
-                  Du kan se koden på min{" "}
+                  Se koden på min{" "}
                   <a href="https://github.com/kodeFant/ufo-portfolio">Github</a>
                 </p>
               </>
@@ -162,7 +164,7 @@ function QnA({
       {selectedQuestion === id && (
         <div
           style={{
-            backgroundColor: darkerGreen,
+            backgroundColor: darkestGreen,
             padding: "1rem",
             width: "100%",
           }}
