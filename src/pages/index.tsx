@@ -51,7 +51,14 @@ function IndexPage({ location, data }: IndexPage) {
   })
 
   return (
-    <animated.div style={grow}>
+    <animated.div
+      style={{
+        ...grow,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Layout
         backgroundImg={data.backgroundImg.childImageSharp.fluid}
         shadow={true}

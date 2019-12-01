@@ -18,7 +18,10 @@ const validationSchema = yup.object().shape({
     .string()
     .email("Må være gyldig epost")
     .required("Påkrevd felt"),
-  message: yup.string().required("Legg igjen beskjed"),
+  message: yup
+    .string()
+    .required("Legg igjen beskjed")
+    .min(10, "Skriv litt lenger"),
 })
 
 interface IForm {
@@ -150,7 +153,7 @@ export default function ContactModal() {
                                 spellCheck={false}
                                 style={{ color: "white" }}
                               />
-                              <ErrorMessage name="email" />
+                              <ErrorMessage name="message" />
                             </>
                           )}
                           {formStage === SENT && (
@@ -189,7 +192,11 @@ export default function ContactModal() {
                             `}
                             type={formStage === MESSAGE ? `submit` : `button`}
                           >
-                            {formStage === SENT ? "Ok" : "Neste"}
+                            {formStage === SENT
+                              ? "Ok"
+                              : formStage === MESSAGE
+                              ? "Send"
+                              : "Neste"}
                           </Button>
                         </ButtonPairContainer>
                       </StyledForm>

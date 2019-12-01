@@ -72,6 +72,9 @@ export default AboutPage
 // Main
 const Main = styled.main`
   grid-area: main;
+  ${mq[1]} {
+    overflow: auto;
+  }
 `
 
 const SkillChart = styled.div`
@@ -109,6 +112,7 @@ interface IGraphEntry {
 
 const GraphEntry = styled.div<IGraphEntry>`
   display: grid;
+
   grid-template-columns: 5fr 2fr 5fr;
   background: linear-gradient(
     90deg,

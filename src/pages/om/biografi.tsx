@@ -48,6 +48,7 @@ export default function AboutPage1() {
 
 const BiographyContainer = styled.div`
   padding: 1rem;
+  overflow-y: auto;
   font-size: 2rem;
   background: rgb(0, 0, 0);
   display: flex;
