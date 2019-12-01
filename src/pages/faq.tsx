@@ -11,9 +11,7 @@ import { useImmer } from "use-immer"
 import { babyBlue, lightestGreen } from "../utilities/Colors"
 
 export default function FAQPage() {
-  const [selectedQuestion, setSelectedQuestion] = useImmer<number | undefined>(
-    undefined
-  )
+  const [selectedQuestion, setSelectedQuestion] = useImmer<number | null>(null)
   return (
     <Layout>
       <SEO title="Ofte stilte spørsmål" />
@@ -24,7 +22,10 @@ export default function FAQPage() {
             question="Tar du imot oppdag?"
             answer={
               <>
-                <p>Jeg jobber hovedsakelig for Kantega og prioriterer det.</p>
+                <p>
+                  Jeg jobber hovedsakelig for Kantega og prioriterer det. Ta
+                  gjerne kontakt med dem for forespørsler om større oppdrag.
+                </p>
                 <p>
                   Jeg kan i noen tilfeller vurdere avgrensede oppdrag av mindre
                   omfang.
@@ -123,9 +124,9 @@ interface IQnA {
   question: string
   answer: React.ReactNode
   id: number
-  selectedQuestion: number | undefined
+  selectedQuestion: number | null
   setSelectedQuestion: (
-    f: (draft: number | undefined) => number | void | undefined
+    f: (draft: number | null) => number | void | null
   ) => void
 }
 
@@ -143,7 +144,10 @@ function QnA({
           if (id !== selectedQuestion) {
             setSelectedQuestion(() => id)
           } else if (id === selectedQuestion) {
-            setSelectedQuestion(() => undefined)
+            console.log("close")
+            setSelectedQuestion(() => {
+              return null
+            })
           }
         }}
       >
