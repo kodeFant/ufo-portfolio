@@ -8,7 +8,12 @@ import SEO from "../components/SEO"
 import styled from "@emotion/styled"
 import { Heading2, AboutHeader } from "../elements/Headers"
 import { useImmer } from "use-immer"
-import { babyBlue, lightestGreen } from "../utilities/Colors"
+import {
+  babyBlue,
+  lightestGreen,
+  darkGreen,
+  darkerGreen,
+} from "../utilities/Colors"
 
 export default function FAQPage() {
   const [selectedQuestion, setSelectedQuestion] = useImmer<number | null>(null)
@@ -138,7 +143,7 @@ function QnA({
   id,
 }: IQnA) {
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <AboutHeader
         onClick={() => {
           if (id !== selectedQuestion) {
@@ -153,7 +158,18 @@ function QnA({
       >
         {question}
       </AboutHeader>
-      {selectedQuestion === id && answer}
+
+      {selectedQuestion === id && (
+        <div
+          style={{
+            backgroundColor: darkerGreen,
+            padding: "1rem",
+            width: "100%",
+          }}
+        >
+          {answer}
+        </div>
+      )}
     </div>
   )
 }
@@ -169,7 +185,7 @@ const StyledContainer = styled.div`
   padding: 1rem;
   grid-template:
     "content" 1fr
-    "nav" auto;
+    "nav" auto / 1fr;
   p {
     text-shadow: 2px 2px 0px #585858, -2px -2px 0px #585858,
       -2px 2px 0px #585858, 2px -2px 0px #585858;
@@ -186,6 +202,7 @@ const StyledContainer = styled.div`
 
 const Content = styled.div`
   grid-area: content;
+  width: 100%;
 `
 
 const Nav = styled.nav`
