@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Lars Lillo Ulvestad :: Webutvikler`,
-    description: `Mine porteføljeprosjekter.`,
+    title: `Lars Lillo Ulvestad :: Utvikler og historieforteller`,
+    description: `Lars Lillo Ulvestad utvikler apper og nettsider, med bakgrunn som innholdsskaper og journalist på web.`,
     author: `@larsparsfromage`,
     image: "/lillo-og-image.png",
   },
