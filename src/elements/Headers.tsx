@@ -21,4 +21,11 @@ export const AboutHeader = styled.h2`
   text-shadow: 2px 2px 0px #0c2c64, -2px -2px 0px #0c2c64, -2px 2px 0px #0c2c64,
     2px -2px 0px #0c2c64;
   font-size: 2rem;
+
+  margin: 1rem 0;
+  padding: 0;
+
+  :hover {
+    background-color: #003420;
+  }
 `

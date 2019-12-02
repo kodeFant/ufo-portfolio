@@ -1,25 +1,27 @@
 import React from "react"
 import Layout from "../components/Layout"
 
-import { css } from "@emotion/core"
 import { ButtonLink } from "../elements/Button"
 import ClickSound from "../components/ClickSound"
 import SEO from "../components/SEO"
 import styled from "@emotion/styled"
-import { Heading2, AboutHeader } from "../elements/Headers"
+import { Heading2 } from "../elements/Headers"
 import { useImmer } from "use-immer"
 import {
   babyBlue,
-  lightestGreen,
-  darkGreen,
-  darkerGreen,
   darkestGreen,
+  mainGreen,
+  blackishGreen,
 } from "../utilities/Colors"
+import { useTransition, animated } from "react-spring"
 
 export default function FAQPage() {
   const [selectedQuestion, setSelectedQuestion] = useImmer<number | null>(null)
   return (
-    <Layout>
+    <Layout
+      radial={true}
+      radialColors={{ dark: "rgba(0, 0, 0, 1)", light: "rgba(7, 36, 7, 1)" }}
+    >
       <SEO title="Ofte stilte spørsmål" />
       <StyledContainer>
         <Content>
@@ -28,17 +30,18 @@ export default function FAQPage() {
             question="Tar du oppdrag?"
             answer={
               <>
+                <p>Jeg jobber hovedsakelig for Kantega og prioriterer det.</p>
                 <p>
-                  Jeg jobber hovedsakelig for Kantega og prioriterer det. Ta
-                  gjerne kontakt med dem for forespørsler om større oppdrag.
+                  Ta gjerne kontakt med dem for forespørsler om større oppdrag.
                 </p>
                 <p>
                   Jeg kan i noen tilfeller vurdere avgrensede oppdrag av mindre
-                  omfang.
+                  omfang som frilanser. Det vil normalt være en blogg,
+                  landingsside eller en liten applikasjon.
                 </p>
                 <p>
-                  Det vil normalt være en blogg, landingsside eller en liten
-                  applikasjon.
+                  Det forutsetter fleksible tidsfrister siden dagarbeidet kommer
+                  i første rekke.
                 </p>
               </>
             }
@@ -50,8 +53,9 @@ export default function FAQPage() {
             question="Hva kan du bidra med?"
             answer={
               <p>
-                Jeg spesialiserer meg innen frontend, men er veldig glad i å
-                lære nye teknologier og måter å jobbe på.
+                Jeg spesialiserer meg innen frontend og har med min bakgrunn
+                innen webkommunikasjon og webjournalistikk innsikt og interesse
+                for en god brukeropplevelse.
               </p>
             }
             selectedQuestion={selectedQuestion}
@@ -82,40 +86,23 @@ export default function FAQPage() {
             question="Hvem har laget designet?"
             answer={
               <p>
-                Designet er en hyllest til mitt favoritt-strategispill, XCOM:
-                Enemy Unknown fra 1994. Jeg har tatt elementer fra menyer og
-                grensesnitt i spillet og kodet det opp med CSS.
+                Designet er en hyllest til mitt favoritt-strategispill,{" "}
+                <a href="https://en.wikipedia.org/wiki/UFO:_Enemy_Unknown">
+                  XCOM: Enemy Unknown
+                </a>{" "}
+                fra 1994. Jeg har tatt elementer fra menyer og grensesnitt i
+                spillet og kodet det opp med CSS.
               </p>
             }
             selectedQuestion={selectedQuestion}
             setSelectedQuestion={setSelectedQuestion}
             id={4}
           />
-          <QnA
-            question="Er du designer?"
-            answer={
-              <p>
-                Nei, jeg ser ikke på meg selv som designer. Men jeg forstår at
-                det er lett å forveksle, da frontend-utvikling er tett knyttet
-                opp mot design.
-              </p>
-            }
-            selectedQuestion={selectedQuestion}
-            setSelectedQuestion={setSelectedQuestion}
-            id={5}
-          />
         </Content>
         <Nav>
           <ButtonLink
+            style={{ maxWidth: "230px" }}
             to="/"
-            css={css`
-              & {
-                padding: 1rem;
-                width: 100%;
-                max-width: 300px;
-              }
-            `}
-            style={{ color: lightestGreen }}
             state={{ muteSound: false }}
           >
             Tilbake
@@ -144,9 +131,21 @@ function QnA({
   setSelectedQuestion,
   id,
 }: IQnA) {
+  const transitions = useTransition(selectedQuestion === id, null, {
+    from: {
+      maxHeight: "0vh",
+      opacity: 0,
+      overflow: "hidden",
+      padding: 0,
+      margin: 0,
+    },
+    enter: { maxHeight: "100vh", opacity: 1 },
+    leave: { maxHeight: "0vh", opacity: 0 },
+  })
+
   return (
     <div style={{ width: "100%" }}>
-      <AboutHeader
+      <QnAHeading
         onClick={() => {
           if (id !== selectedQuestion) {
             setSelectedQuestion(() => id)
@@ -159,18 +158,24 @@ function QnA({
         }}
       >
         {question}
-      </AboutHeader>
+      </QnAHeading>
 
-      {selectedQuestion === id && (
-        <div
-          style={{
-            backgroundColor: darkestGreen,
-            padding: "1rem",
-            width: "100%",
-          }}
-        >
-          {answer}
-        </div>
+      {transitions.map(
+        ({ item, key, props }) =>
+          item && (
+            <animated.div key={key} style={props}>
+              <div
+                style={{
+                  backgroundColor: `rgba(0, 0, 0, 0.4)`,
+                  padding: "1rem",
+                  width: "100%",
+                  overflow: "hidden",
+                }}
+              >
+                {answer}
+              </div>
+            </animated.div>
+          )
       )}
     </div>
   )
@@ -188,17 +193,18 @@ const StyledContainer = styled.div`
   grid-template:
     "content" 1fr
     "nav" auto / 1fr;
+
   p {
     text-shadow: 2px 2px 0px #585858, -2px -2px 0px #585858,
       -2px 2px 0px #585858, 2px -2px 0px #585858;
-  }
 
-  a {
-    color: ${babyBlue};
-    text-shadow: 1px 1px 0px #0c2c64, -1px -1px 0px #0c2c64,
-      -1px 1px 0px #0c2c64, 1px -1px 0px #0c2c64;
-    font-size: 2rem;
-    text-decoration: none;
+    a {
+      color: ${babyBlue};
+      text-shadow: 1px 1px 0px #0c2c64, -1px -1px 0px #0c2c64,
+        -1px 1px 0px #0c2c64, 1px -1px 0px #0c2c64;
+      font-size: 2rem;
+      text-decoration: none;
+    }
   }
 `
 
@@ -211,4 +217,16 @@ const Nav = styled.nav`
   grid-area: nav;
   width: 100%;
   justify-self: end;
+`
+
+const QnAHeading = styled.h2`
+  color: ${mainGreen};
+  font-size: 1.8rem;
+
+  text-shadow: 2px 2px 0px ${darkestGreen}, -2px -2px 0px ${darkestGreen},
+    -2px 2px 0px ${darkestGreen}, 2px -2px 0px ${darkestGreen};
+  cursor: inherit;
+  :hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 `
