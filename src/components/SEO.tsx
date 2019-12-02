@@ -8,7 +8,6 @@
 import React from "react"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-const ogImage = require("../images/lillo-og-image.png")
 
 interface MetaDescription {
   name: string
@@ -55,7 +54,7 @@ function SEO({ description = "", lang = "no", meta = [], title }: ISEO) {
         { property: `og:url`, content: "https://lillo.tech" },
         {
           property: `og:image`,
-          content: ogImage,
+          content: "lillo-og-image.png",
         },
         {
           property: `og:title`,
