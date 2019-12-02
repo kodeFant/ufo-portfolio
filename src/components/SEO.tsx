@@ -52,9 +52,9 @@ function SEO({ description = "", lang = "no", meta = [], title }: ISEO) {
           name: `description`,
           content: metaDescription,
         },
-
+        { name: `og:url`, content: "https://lillo.tech" },
         {
-          name: `og:image`,
+          property: `og:image`,
           content: site.siteMetadata.image,
         },
         {
