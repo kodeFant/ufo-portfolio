@@ -30,6 +30,7 @@ function SEO({ description = "", lang = "no", meta = [], title }: ISEO) {
             title
             description
             author
+            image
           }
         }
       }
@@ -54,7 +55,7 @@ function SEO({ description = "", lang = "no", meta = [], title }: ISEO) {
         { property: `og:url`, content: "https://lillo.tech" },
         {
           property: `og:image`,
-          content: "lillo-og-image.png",
+          content: site.siteMetadata.image,
         },
         {
           property: `og:title`,
