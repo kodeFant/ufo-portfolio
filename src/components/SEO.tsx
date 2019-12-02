@@ -38,6 +38,7 @@ function SEO({ description = "", lang = "no", meta = [], title }: ISEO) {
   )
 
   const metaDescription = description || site.siteMetadata.description
+  console.log()
 
   return (
     <Helmet
@@ -51,9 +52,10 @@ function SEO({ description = "", lang = "no", meta = [], title }: ISEO) {
           name: `description`,
           content: metaDescription,
         },
+
         {
           name: `og:image`,
-          content: site.siteMetaData.image,
+          content: site.siteMetadata.image,
         },
         {
           property: `og:title`,
