@@ -30,6 +30,7 @@ function SEO({ description = "", lang = "no", meta = [], title }: ISEO) {
             title
             description
             author
+            image
           }
         }
       }
@@ -49,6 +50,10 @@ function SEO({ description = "", lang = "no", meta = [], title }: ISEO) {
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: `og:image`,
+          content: site.siteMetaData.image,
         },
         {
           property: `og:title`,

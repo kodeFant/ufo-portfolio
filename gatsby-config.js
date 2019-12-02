@@ -3,6 +3,7 @@ module.exports = {
     title: `Lars Lillo Ulvestad :: Webutvikler`,
     description: `Mine porteføljeprosjekter.`,
     author: `@larsparsfromage`,
+    image: "/images/lillo-og-image",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
