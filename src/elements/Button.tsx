@@ -17,7 +17,7 @@ const defaultButton = `
     background-color: ${darkerGreen};
     padding: 1rem;
     color: ${lightestGreen};
-    font-size: 1.5rem;
+    
     outline: outset 2px ${lighterGreen};
     border: outset 2px ${lighterGreen};
     text-shadow: 2px 2px 0px ${darkestGreen}, -2px -2px 0px ${darkestGreen},
@@ -26,6 +26,7 @@ const defaultButton = `
     font-size: 1.2rem;
 
     ${mq[0]} {
+      font-size: 1.5rem;
       padding: 1.5rem;
     }
 
