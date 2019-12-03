@@ -22,6 +22,8 @@ const defaultButton = `
     border: outset 2px ${lighterGreen};
     text-shadow: 2px 2px 0px ${darkestGreen}, -2px -2px 0px ${darkestGreen},
       -2px 2px 0px ${darkestGreen}, 2px -2px 0px ${darkestGreen};
+    padding: 0.5rem;
+    font-size: 1.2rem;
 
     ${mq[0]} {
       padding: 1.5rem;

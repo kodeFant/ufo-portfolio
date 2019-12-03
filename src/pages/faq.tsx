@@ -139,7 +139,7 @@ function QnA({
       padding: 0,
       margin: 0,
     },
-    enter: { maxHeight: "100vh", opacity: 1 },
+    enter: { maxHeight: "200vh", opacity: 1 },
     leave: { maxHeight: "0vh", opacity: 0 },
   })
 
