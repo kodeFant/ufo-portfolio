@@ -14,6 +14,11 @@ export const Heading2 = styled.h2`
   color: #a8bc50;
   margin: 0;
   font-weight: normal;
+
+  font-size: 2.5rem;
+  mq[0] {
+    font-size: 3rem;
+  }
 `
 export const AboutHeader = styled.h2`
   text-transform: uppercase;
