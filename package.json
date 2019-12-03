@@ -17,6 +17,7 @@
     "gatsby-plugin-offline": "^3.0.19",
     "gatsby-plugin-preact": "^3.1.21",
     "gatsby-plugin-react-helmet": "^3.1.14",
+    "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-sharp": "^2.2.37",
     "gatsby-plugin-tslint": "^0.0.2",
     "gatsby-plugin-typescript": "^2.1.18",
