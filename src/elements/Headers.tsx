@@ -29,8 +29,4 @@ export const AboutHeader = styled.h2`
 
   margin: 1rem 0;
   padding: 0;
-
-  :hover {
-    background-color: #003420;
-  }
 `
