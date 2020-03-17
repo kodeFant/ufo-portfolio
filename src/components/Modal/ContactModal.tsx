@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Backdrop from "./Backdrop"
 import { ModalContainer } from "../../elements/Modal"
 import ModalState from "../../state/modal"
@@ -133,29 +133,8 @@ export default function ContactModal() {
                           {formStage === MESSAGE && "Skriv beskjed"}
                         </Heading2>
                         <FormFieldContainer>
-                          {formStage === EMAIL && (
-                            <>
-                              <StyledInput
-                                type="text"
-                                name="email"
-                                autoComplete="off"
-                                autoFocus={true}
-                              />
-                              <ErrorMessage name="email" />
-                            </>
-                          )}
-                          {formStage === MESSAGE && (
-                            <>
-                              <StyledInput
-                                name="message"
-                                component="textarea"
-                                autoFocus={true}
-                                spellCheck={false}
-                                style={{ color: "white" }}
-                              />
-                              <ErrorMessage name="message" />
-                            </>
-                          )}
+                          {formStage === EMAIL && <EmailInput />}
+                          {formStage === MESSAGE && <MessageInput />}
                           {formStage === SENT && (
                             <div>Takk. Din henvendelselse er sendt.</div>
                           )}
@@ -208,6 +187,45 @@ export default function ContactModal() {
           )
       )}
     </Backdrop>
+  )
+}
+
+function EmailInput() {
+  const inputRef = useRef<HTMLInputElement | null>(null)
+  useEffect(() => {
+    inputRef.current && inputRef.current.focus()
+  })
+  return (
+    <>
+      <Field
+        type="text"
+        name="email"
+        autoComplete="off"
+        autoFocus={true}
+        innerRef={inputRef}
+      />
+      <ErrorMessage name="email" />
+    </>
+  )
+}
+
+function MessageInput() {
+  const inputRef = useRef<HTMLInputElement | null>(null)
+  useEffect(() => {
+    inputRef.current && inputRef.current.focus()
+  })
+  return (
+    <>
+      <StyledInput
+        name="message"
+        component="textarea"
+        autoFocus={true}
+        spellCheck={false}
+        style={{ color: "white" }}
+        innerRef={inputRef}
+      />
+      <ErrorMessage name="message" />
+    </>
   )
 }
 

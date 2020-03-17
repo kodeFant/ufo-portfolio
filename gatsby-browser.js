@@ -6,4 +6,4 @@
 
 // You can delete this file if you're not using it
 
-import "typeface-vt323"
+const typeface = require("typeface-vt323")

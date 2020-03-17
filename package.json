@@ -7,9 +7,18 @@
   "dependencies": {
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.23",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
     "emotion-normalize": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
     "facepaint": "^1.2.1",
     "formik": "^2.0.5",
+    "fp-ts": "^2.5.1",
     "gatsby": "^2.17.11",
     "gatsby-image": "^2.2.31",
     "gatsby-plugin-emotion": "^4.1.15",
@@ -19,7 +28,6 @@
     "gatsby-plugin-react-helmet": "^3.1.14",
     "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-sharp": "^2.2.37",
-    "gatsby-plugin-tslint": "^0.0.2",
     "gatsby-plugin-typescript": "^2.1.18",
     "gatsby-source-filesystem": "^2.1.36",
     "gatsby-transformer-remark": "^2.6.37",
@@ -30,6 +38,7 @@
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
     "react-spring": "^8.0.27",
+    "ts-node": "^8.6.2",
     "typeface-vt323": "^0.0.72",
     "unstated-next": "^1.1.0",
     "use-immer": "^0.3.5",
@@ -42,10 +51,6 @@
     "date-fns": "^2.8.1",
     "prettier": "^1.19.1",
     "styled-components": "^4.4.1",
-    "tslint": "^5.20.1",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-loader": "^3.5.4",
-    "tslint-react": "^4.1.0",
     "typescript": "^3.7.2"
   },
   "keywords": [
@@ -67,5 +72,35 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true
+    },
+    "plugins": [
+      "fp"
+    ],
+    "rules": {
+      "fp/no-arguments": "error",
+      "fp/no-class": "error",
+      "fp/no-delete": "error",
+      "fp/no-events": "error",
+      "fp/no-get-set": "error",
+      "fp/no-let": "error",
+      "fp/no-loops": "error",
+      "fp/no-mutating-assign": "error",
+      "fp/no-mutating-methods": "error",
+      "fp/no-mutation": ["error", {
+        "commonjs": true
+        }],
+      "fp/no-nil": "error",
+      "fp/no-proxy": "error",
+      "fp/no-rest-parameters": "error",
+      "fp/no-this": "error",
+      "fp/no-throw": "error",
+      "fp/no-unused-expression": ["error", {"allowUseStrict": true }],
+      "fp/no-valueof-field": "error",
+      "no-var": "error"
+    }
   }
 }

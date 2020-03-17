@@ -1,3 +1,4 @@
+/* eslint-disable */
 module.exports = {
   siteMetadata: {
     title: `Lars Lillo Ulvestad :: Utvikler og historieforteller`,
@@ -7,7 +8,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-tslint`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-remove-serviceworker`,
     {
