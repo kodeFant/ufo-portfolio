@@ -75,9 +75,12 @@ export default function AboutMeTemplate({
             </NavInfo>
           </Nav>
           <ProjectStats>
-            <AboutEntry name="Prosjekter" value={projects.toString()} />
+            <AboutEntry
+              name="Fullførte prosjekter"
+              value={projects.toString()}
+            />
             <AboutEntry name="Oppdragsgivere" value="4" />
-            <AboutEntry name="Erfaring" value="1 år" />
+            <AboutEntry name="Erfaring" value="2 år" />
           </ProjectStats>
           <Links>{/* <AboutBtnLink to="/">Biografi</AboutBtnLink> */}</Links>
         </Menu>

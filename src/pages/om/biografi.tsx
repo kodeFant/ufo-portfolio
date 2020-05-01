@@ -37,8 +37,8 @@ export default function AboutPage1() {
             krever mindre vedlikehold. Det kommer også kunden til gode.
           </p>
           <p>
-            På blogger og statiske sider velger jeg ofte GatsbyJS med React og
-            TypeScript.
+            Jeg anbefaler generelt bruk av typesikker funksjonell teknologi som
+            er godt egnet for å håndtere voksende kompleksitet.
           </p>
         </div>
       </BiographyContainer>
