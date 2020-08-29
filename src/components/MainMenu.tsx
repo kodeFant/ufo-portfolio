@@ -19,7 +19,7 @@ export default function MainMenu() {
   return (
     <MainMenuContainer>
       <Selections>
-        <ButtonLink gridarea="one" to="/portfolio/tipzer">
+        <ButtonLink gridarea="one" to="/portfolio/dill">
           Portefølje
         </ButtonLink>
         <ButtonLink gridarea="two" to="/om">

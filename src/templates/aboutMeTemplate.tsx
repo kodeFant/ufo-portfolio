@@ -71,7 +71,7 @@ export default function AboutMeTemplate({
             </NavButtons>
             <NavInfo>
               <AboutEntry name="Team" value="Kantega" />
-              <AboutEntry name="Rang" value="Frontendutvikler" />
+              <AboutEntry name="Rang" value="Utvikler" />
             </NavInfo>
           </Nav>
           <ProjectStats>
@@ -79,7 +79,7 @@ export default function AboutMeTemplate({
               name="Fullførte prosjekter"
               value={projects.toString()}
             />
-            <AboutEntry name="Oppdragsgivere" value="4" />
+            <AboutEntry name="Oppdragsgivere" value="7" />
             <AboutEntry name="Erfaring" value="2 år" />
           </ProjectStats>
           <Links>{/* <AboutBtnLink to="/">Biografi</AboutBtnLink> */}</Links>

@@ -8,6 +8,6 @@ started: "2019-05-01"
 finished: "2019-09-1"
 logo: "kantega-logo.png"
 tech: ["React", "TypeScript", "Firebase", "Styled Components", "Azure Cognitive Services"]
-darkColor: "#034961"
-lightColor: "#166F89"
+darkColor: "rgb(35, 6, 58)"
+lightColor: "#2B4172"
 ---

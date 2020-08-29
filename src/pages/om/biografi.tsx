@@ -27,18 +27,14 @@ export default function AboutPage1() {
           <div style={{ height: "40px" }} />
           <AboutHeader>Arbeidsbakgrunn</AboutHeader>
           <p>
-            Jeg startet arbeidslivet som webjournalist og web-basert
-            kommunikasjonsrådgiver. Nå utvikler jeg apper og nettsider. Jeg
-            jobber som konsulent for <a href="https://kantega.no">Kantega</a>.
+            Utvikler med frontend og funksjonell programmering som spesialfelt. Ansatt som konsulent i <a href="https://kantega.no">Kantega</a>.
           </p>
           <AboutHeader>Foretrukne teknologier</AboutHeader>
           <p>
-            Det funksjonelle språket Elm gir pålitelig kode for webapper som
-            krever mindre vedlikehold. Det kommer også kunden til gode.
+            Det viktigste ved teknologivalg er at utviklerne kan finne fram til det som er best egnet. Ikke hør på dem som sier at du "må ha" den ene eller andre teknologien. Det er et salgstriks for å hevde seg mot konkurrenter.
           </p>
           <p>
-            Jeg anbefaler generelt bruk av typesikker funksjonell teknologi som
-            er godt egnet for å håndtere voksende kompleksitet.
+            Jeg er ekstra entusiastisk når det kommer til funkjonell programmering. Teknologiene jeg pusler mest med Elm, Haskell og Elixir.
           </p>
         </div>
       </BiographyContainer>

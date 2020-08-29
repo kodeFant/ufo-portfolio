@@ -114,8 +114,8 @@ export default function PortfolioTemplate({
 
         <PortfolioData>
           <h1 style={{ margin: "0.5rem 0" }}>{title}</h1>
-          <DottedField entry="Påbegynt" value={started} />
-          <DottedField entry="Varighet" value={duration} />
+          <DottedField entry="Prosjektstart" value={started} />
+          {/* <DottedField entry="Varighet" value={duration} /> */}
           <DottedField entry="Oppdragsgiver" value={contractor} />
         </PortfolioData>
         <PortFolioDescription>

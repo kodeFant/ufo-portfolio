@@ -1,7 +1,7 @@
 ---
 path: "tipzer"
 title: Tipzer
-url: https://tipzer.no
+url: /
 contractor: Nextmark
 description: "En digital salgsplattform for privatpersoner. Jeg utviklet frontend og fungerende backend. Jeg tilegnet meg kompetanse innen det å bygge GraphQL-apier og legge på ekstra funksjonalitet som automatiserte SMS og epost-tjenester."
 started: "2019-02-01"
@@ -11,5 +11,3 @@ tech: ["React", "Laravel", "GraphQL", "Styled Components", "PHP", "JavaScript", 
 darkColor: "rgb(246, 246, 246)"
 lightColor: "rgb(255, 255, 255)"
 ---
-
-d
